@@ -4,7 +4,7 @@ A responsive agency website built with React, Vinext, and Tailwind CSS.
 
 ## Development
 
-Requires Node.js 22.13 or newer and npm.
+Requires Node.js 24.x and npm.
 
 ```sh
 npm install
@@ -19,6 +19,17 @@ npm start
 ```
 
 The production build exports static files to `dist/client`.
+
+## Deploy on Vercel
+
+Set the project's Root Directory to `Website/site`. The checked-in `vercel.json`
+selects the Other framework preset, installs the locked dependencies with `npm ci`,
+runs `npm run build`, and serves `dist/client`. This project uses Vinext's static
+export, so it does not use Vercel's Next.js build preset.
+
+Node.js is pinned to the 24.x major version in `package.json`. Keep
+`@cloudflare/workers-types` compatible with Wrangler's peer dependency and commit
+`package-lock.json` whenever dependencies change.
 
 ## Content and appearance
 
