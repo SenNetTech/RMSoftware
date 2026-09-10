@@ -1,33 +1,35 @@
-# RM Software
+# RMSoftware
 
-A responsive, single-page agency website built with React, Vinext, and Tailwind CSS.
+A responsive agency website built with React, Vinext, and Tailwind CSS.
 
-## Run locally
+## Development
 
-Requires Node.js 22.13 or newer and npm. In this directory:
+Requires Node.js 22.13 or newer and npm.
 
 ```sh
 npm install
 npm run dev
 ```
 
-Open the local address printed by the server (normally http://localhost:3000).
+Use the local address printed by the server.
 
 ```sh
 npm run build
 npm start
 ```
 
-The production build exports static files to `dist/client`. No database, email service, account, or hosted deployment is configured.
+The production build exports static files to `dist/client`.
 
-## Content
+## Content and appearance
 
-- Edit page copy, services, and process steps in `app/page.tsx`.
-- Edit navigation in `app/header.tsx` and design tokens/layouts in `app/globals.css`.
-- The original supplied logo remains in `../Images/Logo.jpeg`; `public/images/logo.jpeg` is an unchanged copy. CSS clips its surrounding whitespace without modifying the image. The favicon embeds the same artwork.
-- The contact section intentionally says “Business email coming soon.” Before launch, replace it with the actual business email and a corresponding `mailto:` link.
+- `app/page.tsx`: services, business examples, process, and director profiles.
+- `app/site-content.ts`: business email and optional international WhatsApp number. The email button opens the visitor's email application; this static site does not collect or store enquiries. A WhatsApp contact button appears only when a verified number is configured.
+- `app/header.tsx`: desktop and keyboard-accessible mobile navigation.
+- `app/globals.css`: shared design tokens and responsive styling. Light and dark themes follow `prefers-color-scheme` until the header toggle is used. The chosen theme is saved locally and applied before the page renders on future visits. Reduced-motion settings are respected.
+- `app/layout.tsx`: document title, description, and fonts.
+- The existing supplied logo is preserved in `public/images/logo.jpeg`. CSS adapts its display for each theme.
 
-## Checks
+## Verification
 
 ```sh
 npx tsc --noEmit
@@ -35,4 +37,4 @@ npx oxlint app
 npm run build
 ```
 
-The scaffold also includes an unused Shadcn component catalog. Full-repository `npm run lint` currently reports pre-existing issues in those generated components and their hook; the authored app is checked separately. Browser interaction and visual tests have not been run.
+The generated Shadcn catalog is retained. Browser visual and interaction testing has not been run.

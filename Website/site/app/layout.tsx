@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RM Software | Websites, Mobile Apps & Custom Software',
-  description: 'Thoughtful websites, mobile apps, and custom software for small businesses. RM Software turns your business needs into practical digital solutions.',
+  title: 'RMSoftware | Business Software, Automation & AI Solutions',
+  description: 'Move your business forward with RMSoftware. Custom software, business automation, AI integration, WhatsApp tools, websites, and mobile apps built around your needs.',
 };
 
 export default function RootLayout({
@@ -23,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{var theme=localStorage.getItem('rmsoftware-theme');if(theme==='light'||theme==='dark')document.documentElement.dataset.theme=theme;}catch{}` }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
