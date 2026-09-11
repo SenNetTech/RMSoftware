@@ -1,7 +1,21 @@
 import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Bot, Braces, Check, CircleCheck, Globe2, Mail, MessageCircle, Moon, MoveUpRight, Network, ShieldCheck, Sparkles, Sun, Workflow, Zap } from 'lucide-react';
 import Header from './header';
 import Image from 'next/image';
-import { contact } from './site-content';
+import { contact, site } from './site-content';
+import type { Metadata } from 'next';
+import StructuredData from './structured-data';
+
+export const metadata: Metadata = {
+  alternates: { canonical: site.url },
+  openGraph: {
+    type: 'website',
+    locale: 'en_ZA',
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    url: site.url,
+  },
+};
 
 const services = [
   { icon: Workflow, title: 'Business automation', text: 'Give repetitive work to software. Connect your processes so your team can spend more time on work that needs a human.', example: 'Enquiry → quote → invoice → follow-up', benefit: 'Less admin. More time back.' },
@@ -34,6 +48,7 @@ function BusinessDiagram() {
 }
 export default function Home() {
   return <>
+    <StructuredData />
     <a className="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main" tabIndex={-1}>
@@ -41,7 +56,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> SMART SOFTWARE. REAL BUSINESS VALUE.</p>
           <h1 id="hero-title">Less friction.<br />More <span>forward.</span></h1>
-          <p className="hero-description">Your business has places to go. We build the software that helps you get there.</p>
+          <p className="hero-description">Custom software development that helps your business work better and move forward.</p>
           <p className="hero-detail">Automation, custom software, AI, and WhatsApp tools — built around your challenges, your people, and your next step.</p>
           <div className="hero-actions"><a className="button button-primary" href="#contact">Let’s talk about your business <ArrowUpRight size={19} /></a><a className="text-link" href="#services">What we can do <ArrowDown size={17} /></a></div>
           <div className="hero-note"><span className="note-line" /> Thoughtful solutions. People who care.</div>

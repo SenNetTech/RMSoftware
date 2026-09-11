@@ -15,6 +15,7 @@ Use the local address printed by the server.
 
 ```sh
 npm run build
+npm run check:seo
 npm start
 ```
 
@@ -49,3 +50,17 @@ npm run build
 ```
 
 The generated Shadcn catalog is retained. Browser visual and interaction testing has not been run.
+
+## Search engine optimisation
+
+- `app/site-content.ts` holds the production URL, search title, description, and contact details. The canonical URL is `https://www.rmsoftware.co.za/`, matching the live non-www redirect.
+- The homepage includes canonical, Open Graph, and Twitter metadata. `app/structured-data.tsx` supplies Organization, WebSite, and WebPage JSON-LD using the existing logo and verified business details.
+- `public/robots.txt` and `public/sitemap.xml` are copied into the static export. Only real pages belong in the sitemap; section anchors do not. Keep their production URLs aligned with `app/site-content.ts`. Add unique page metadata and sitemap entries when new pages are introduced. A last-modified date is omitted until a reliable content-update date is maintained.
+- Run `npm run check:seo` after building to validate the actual static files that Vercel serves.
+- Vercel applies `X-Robots-Tag: noindex` to preview deployments. Keep production publicly accessible and retain the redirect from the non-primary hostname.
+
+After deploying, verify the domain in Google Search Console, submit
+`https://www.rmsoftware.co.za/sitemap.xml`, and inspect the homepage URL. Domain
+verification requires access to the domain's DNS. Use Google's Rich Results Test
+to check the live structured data. These account-level steps are not performed by
+the local build, and metadata does not guarantee rankings or rich search results.

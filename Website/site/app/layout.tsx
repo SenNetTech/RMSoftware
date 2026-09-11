@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { site } from './site-content';
 import './globals.css';
 
 const geistSans = Geist({
@@ -13,8 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RMSoftware | Business Software, Automation & AI Solutions',
-  description: 'Move your business forward with RMSoftware. Custom software, business automation, AI integration, WhatsApp tools, websites, and mobile apps built around your needs.',
+  metadataBase: new URL(site.url),
+  title: { default: site.title, template: '%s | RMSoftware' },
+  description: site.description,
+  applicationName: site.name,
+  publisher: site.name,
+  icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
+  openGraph: {
+    type: 'website',
+    locale: 'en_ZA',
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+  },
+  twitter: {
+    card: 'summary',
+    title: site.title,
+    description: site.description,
+  },
 };
 
 export default function RootLayout({
