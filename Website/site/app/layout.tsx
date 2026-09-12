@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { site } from './site-content';
 import './globals.css';
+import Header from './header';
+import { Footer } from './site-shell';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   publisher: site.name,
+  referrer: 'strict-origin-when-cross-origin',
   icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
   openGraph: {
     type: 'website',
@@ -42,12 +45,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try{var theme=localStorage.getItem('rmsoftware-theme');if(theme==='light'||theme==='dark')document.documentElement.dataset.theme=theme;}catch{}` }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var theme=localStorage.getItem('rmsoftware-theme');if(theme==='light'||theme==='dark')document.documentElement.dataset.theme=theme;}catch{}`,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <Header />
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

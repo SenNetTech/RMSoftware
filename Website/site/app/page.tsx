@@ -1,79 +1,480 @@
-import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Bot, Braces, Check, CircleCheck, Globe2, Mail, MessageCircle, Moon, MoveUpRight, Network, ShieldCheck, Sparkles, Sun, Workflow, Zap } from 'lucide-react';
-import Header from './header';
-import Image from 'next/image';
-import { contact, site } from './site-content';
+import Link from '@/app/site-link';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CheckCheck,
+  ClipboardList,
+  Database,
+  Layers3,
+  Network,
+  ShieldCheck,
+  Workflow,
+} from 'lucide-react';
 import type { Metadata } from 'next';
+import { site } from './site-content';
+import { services } from './services-data';
 import StructuredData from './structured-data';
+import { ConsultationCTA } from './site-shell';
 
 export const metadata: Metadata = {
   alternates: { canonical: site.url },
   openGraph: {
+    url: site.url,
     type: 'website',
     locale: 'en_ZA',
     siteName: site.name,
     title: site.title,
     description: site.description,
-    url: site.url,
   },
 };
-
-const services = [
-  { icon: Workflow, title: 'Business automation', text: 'Give repetitive work to software. Connect your processes so your team can spend more time on work that needs a human.', example: 'Enquiry → quote → invoice → follow-up', benefit: 'Less admin. More time back.' },
-  { icon: Braces, title: 'Custom software', text: 'When off-the-shelf tools don’t quite fit, we build around the way your business works. From internal systems to customer portals.', example: 'Operations dashboards · Booking systems · Portals', benefit: 'A better fit for your business.' },
-  { icon: Sparkles, title: 'AI integration', text: 'Make AI useful in your everyday work. Help your team find information, organise documents, and respond to customers with human oversight.', example: 'Knowledge assistants · Document processing', benefit: 'Put your information to work.' },
-  { icon: MessageCircle, title: 'WhatsApp business tools', text: 'Meet customers in a conversation. Make enquiries, appointment reminders, and order updates easier to manage through WhatsApp.', example: 'Customer enquiries · Reminders · Order updates', benefit: 'Keep the conversation moving.' },
-  { icon: Globe2, title: 'Websites & mobile apps', text: 'Make it easier for people to discover your business and use your services, with thoughtful websites and apps built for real people.', example: 'Business websites · Web apps · Mobile apps', benefit: 'Turn interest into action.' },
-  { icon: Network, title: 'Connected systems', text: 'Help your existing tools work together. Move information between systems and give your team a clearer view of what’s happening.', example: 'API integrations · Data sync · Reporting', benefit: 'Fewer gaps. A clearer picture.' },
-];
 const steps = [
-  { title: 'Understand your business', text: 'We listen, ask questions, and look at how you work. Together, we identify the problem and what a better outcome means for you.' },
-  { title: 'Find the right solution', text: 'We recommend a practical approach, define the scope, and agree on priorities, cost, and timing before development starts.' },
-  { title: 'Build with you', text: 'We share progress, welcome your feedback, and test against the real tasks your software needs to handle.' },
-  { title: 'Launch & keep improving', text: 'We help you get started, explain how everything works, and agree on the support and improvements your business needs next.' },
+  [
+    'Discover',
+    'We discuss the bottleneck, who it affects and what a useful result would look like.',
+    'A shared understanding of the problem',
+  ],
+  [
+    'Define',
+    'We agree the scope, priorities, costs and milestones before development begins.',
+    'A clear proposal and delivery plan',
+  ],
+  [
+    'Build & validate',
+    'You see progress regularly. We test the software against the work your team actually does.',
+    'Working software, shaped by your feedback',
+  ],
+  [
+    'Launch & support',
+    'We plan the rollout, hand over documentation and agree how to maintain and improve the system.',
+    'A supported transition into everyday use',
+  ],
 ];
-function BusinessDiagram() {
-  return <figure className="business-diagram" aria-labelledby="diagram-caption">
-    <figcaption id="diagram-caption" className="diagram-heading"><span className="status-dot" /> YOUR BUSINESS, BETTER CONNECTED <MoveUpRight size={17} /></figcaption>
-    <div className="diagram-canvas">
-      <div className="diagram-ring ring-outer" /><div className="diagram-ring ring-inner" />
-      <svg className="diagram-lines" viewBox="0 0 560 410" aria-hidden="true"><path d="M280 205V84H390 M280 205H110V114 M280 205H425V314 M280 205V338H142" /></svg>
-      <div className="diagram-node node-automation"><span className="node-icon"><Workflow size={21} /></span><div><strong>Automation</strong><span>Everyday work, simplified</span></div></div>
-      <div className="diagram-node node-ai"><span className="node-icon"><Sparkles size={21} /></span><div><strong>AI integration</strong><span>Intelligence that helps</span></div></div>
-      <div className="diagram-core"><span className="core-symbol"><Network size={31} strokeWidth={1.4} /></span><strong>Your business</strong><span>THE STARTING POINT</span></div>
-      <div className="diagram-node node-software"><span className="node-icon"><Braces size={21} /></span><div><strong>Custom software</strong><span>Built around your needs</span></div></div>
-      <div className="diagram-node node-whatsapp"><span className="node-icon"><MessageCircle size={21} /></span><div><strong>WhatsApp tools</strong><span>Closer to your customers</span></div></div>
-    </div>
-    <div className="diagram-footer"><span><CircleCheck size={16} /> One connected approach</span><span className="diagram-index">RM / 01</span></div>
-  </figure>;
+const examples = [
+  {
+    sector: 'PROFESSIONAL SERVICES',
+    title: 'From inbox to client portal',
+    problem:
+      'Client requests, documents and status updates are scattered across email.',
+    solution: 'A shared portal for requests, files, approvals and progress.',
+    technology: 'Web application · Role-based access · Notifications',
+    impact:
+      'Clients could check progress themselves while staff work from one request history.',
+    icon: ClipboardList,
+  },
+  {
+    sector: 'LOGISTICS & OPERATIONS',
+    title: 'A clearer view of every job',
+    problem: 'Job progress lives in spreadsheets and WhatsApp conversations.',
+    solution: 'An operations dashboard with assigned tasks and status updates.',
+    technology: 'Custom software · Database · System integrations',
+    impact:
+      'Dispatch and operations teams could see outstanding work and follow up from one place.',
+    icon: Layers3,
+  },
+  {
+    sector: 'GROWING BUSINESSES',
+    title: 'An enquiry that keeps moving',
+    problem: 'Teams retype customer details and manually chase each next step.',
+    solution:
+      'An enquiry-to-quote workflow with approvals and follow-up reminders.',
+    technology: 'Workflow automation · APIs · Human approval steps',
+    impact:
+      'An approved enquiry could move forward without repeated data entry between tools.',
+    icon: Workflow,
+  },
+];
+function WorkflowDiagram() {
+  return (
+    <figure className="workflow-diagram">
+      <figcaption>
+        <span className="eyebrow">A BETTER WAY TO WORK</span>
+        <span className="diagram-index">RM / 01</span>
+      </figcaption>
+      <div className="workflow-before">
+        <span className="diagram-label">FROM DISCONNECTED</span>
+        <div>
+          <span>Spreadsheets</span>
+          <span>Email threads</span>
+          <span>Manual updates</span>
+        </div>
+      </div>
+      <div className="workflow-connection" aria-hidden="true">
+        <span />
+        <ArrowRight size={20} />
+      </div>
+      <div className="workflow-system">
+        <Network size={28} />
+        <div>
+          <strong>Your business. One connected system.</strong>
+          <p>People, processes and information, working together.</p>
+        </div>
+      </div>
+      <div className="workflow-results">
+        <div>
+          <CheckCheck size={19} />
+          <span>Less repeat admin</span>
+        </div>
+        <div>
+          <Database size={19} />
+          <span>Clearer information</span>
+        </div>
+        <div>
+          <ShieldCheck size={19} />
+          <span>More control</span>
+        </div>
+      </div>
+      <p className="diagram-footnote">
+        A practical approach, built around your operations.
+      </p>
+    </figure>
+  );
 }
 export default function Home() {
-  return <>
-    <StructuredData />
-    <a className="skip-link" href="#main">Skip to content</a>
-    <Header />
-    <main id="main" tabIndex={-1}>
+  return (
+    <>
+      <StructuredData />
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> SMART SOFTWARE. REAL BUSINESS VALUE.</p>
-          <h1 id="hero-title">Less friction.<br />More <span>forward.</span></h1>
-          <p className="hero-description">Custom software development that helps your business work better and move forward.</p>
-          <p className="hero-detail">Automation, custom software, AI, and WhatsApp tools — built around your challenges, your people, and your next step.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#contact">Let’s talk about your business <ArrowUpRight size={19} /></a><a className="text-link" href="#services">What we can do <ArrowDown size={17} /></a></div>
-          <div className="hero-note"><span className="note-line" /> Thoughtful solutions. People who care.</div>
+          <p className="eyebrow">
+            <span className="status-dot" /> SOFTWARE FOR GROWING BUSINESSES
+          </p>
+          <h1 id="hero-title">
+            Less busywork.
+            <br />
+            <span>More business.</span>
+          </h1>
+          <p className="hero-description">
+            Custom software development that helps your business automate
+            operations, work efficiently and scale.
+          </p>
+          <p className="hero-detail">
+            Replace spreadsheet workarounds and disconnected systems with
+            software built around your team. A technology partner for growing
+            businesses across South Africa.
+          </p>
+          <div className="hero-actions">
+            <Link
+              className="button button-primary"
+              href="/contact/"
+            >
+              Book a Free Consultation <ArrowUpRight size={19} />
+            </Link>
+            <Link
+              className="text-link"
+              href="/contact/#project-form"
+            >
+              Discuss Your Project <ArrowRight size={17} />
+            </Link>
+          </div>
+          <p className="hero-note">
+            A practical first conversation. No technical brief needed.
+          </p>
         </div>
-        <BusinessDiagram />
+        <WorkflowDiagram />
       </section>
-      <div className="outcome-strip"><div className="container"><span>BUILT TO MAKE A DIFFERENCE</span><p><Check size={17} /> Save your team time</p><p><Check size={17} /> Serve customers better</p><p><Check size={17} /> Make room to grow</p></div></div>
-      <section className="section services container" id="services" aria-labelledby="services-title">
-        <div className="section-heading"><div><p className="eyebrow">01 / WHAT WE DO</p><h2 id="services-title" tabIndex={-1}>Big possibilities.<br /><span className="muted-heading">Practical solutions.</span></h2></div><p>You bring the challenge. We bring curiosity, technical expertise, and the drive to find a better way of doing things.</p></div>
-        <div className="service-grid">{services.map(({ icon: Icon, title, text, example, benefit }, index) => <article className="service-card" key={title}><div className="service-top"><span className="service-icon"><Icon size={25} strokeWidth={1.6} /></span><span className="card-number">0{index + 1}</span></div><h3>{title}</h3><p>{text}</p><p className="service-example">{example}</p><div className="service-benefit"><span>{benefit}</span><ArrowUpRight size={18} aria-hidden="true" /></div></article>)}</div>
-        <p className="services-note"><Zap size={18} /> Don’t see your challenge here? Our expertise goes beyond a list. <a href="#contact">Let’s explore it together <ArrowRight size={16} /></a></p>
+      <div className="outcome-strip">
+        <div className="container">
+          <span>BUILT AROUND BUSINESS OUTCOMES</span>
+          <p>
+            <Check size={17} /> Less repetitive work
+          </p>
+          <p>
+            <Check size={17} /> Better operational visibility
+          </p>
+          <p>
+            <Check size={17} /> Room to grow
+          </p>
+        </div>
+      </div>
+      <section className="section container" aria-labelledby="problems-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">01 / THE BOTTLENECK</p>
+            <h2 id="problems-title">
+              Your business has grown.
+              <br />
+              <span className="muted-heading">Your systems haven’t.</span>
+            </h2>
+          </div>
+          <p>
+            When everyday work depends on workarounds, growth adds more admin.
+            The right software gives your team a better way forward.
+          </p>
+        </div>
+        <div className="problem-grid">
+          {[
+            [
+              'Too much copying. Not enough doing.',
+              'The same information moves between spreadsheets, email and disconnected tools. Small changes create a chain of manual updates.',
+            ],
+            [
+              'Progress is hard to see.',
+              'Job status lives in someone’s inbox or a WhatsApp thread. Managers spend time chasing answers instead of making decisions.',
+            ],
+            [
+              'Your tools no longer fit.',
+              'Off-the-shelf software cannot quite handle your processes. Your team works around it, and the exceptions keep growing.',
+            ],
+          ].map(([title, text], i) => (
+            <article key={title}>
+              <span className="card-number">0{i + 1}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
       </section>
-      <section className="possibilities section" aria-labelledby="possibilities-title"><div className="container possibilities-grid"><div><p className="eyebrow">FROM EVERYDAY CHALLENGES TO BETTER WAYS OF WORKING</p><h2 id="possibilities-title">What could work<br />better in your business<span className="blue-text">?</span></h2><p className="possibilities-intro">You don’t need a technical brief. A problem, a time-consuming task, or an idea is a good place to start.</p><a className="text-link" href="#contact">Tell us what’s getting in the way <ArrowUpRight size={18} /></a></div><div className="scenario-list"><article><span className="scenario-number">01</span><div><h3>“We’re doing the same admin every day.”</h3><p>Connect the steps between enquiries, quotes, and follow-ups so your team spends less time copying information.</p><span><Workflow size={15} /> AUTOMATION + INTEGRATIONS</span></div></article><article><span className="scenario-number">02</span><div><h3>“Customer messages are hard to keep up with.”</h3><p>Create a clearer WhatsApp enquiry flow, automate routine updates, and help your team focus on conversations that need them.</p><span><MessageCircle size={15} /> WHATSAPP BUSINESS TOOLS</span></div></article><article><span className="scenario-number">03</span><div><h3>“Our information is scattered everywhere.”</h3><p>Bring useful information into one place with a custom dashboard or an AI assistant that helps your team find answers.</p><span><Bot size={15} /> CUSTOM SOFTWARE + AI</span></div></article></div></div></section>
-      <section className="section container process" id="process" aria-labelledby="process-title"><div className="section-heading"><div><p className="eyebrow">02 / HOW WE WORK</p><h2 id="process-title" tabIndex={-1}>A clear process.<br /><span className="muted-heading">A shared ambition.</span></h2></div><p>Good software starts with understanding. We work with you from the first conversation to the details that make a solution useful.</p></div><ol className="process-grid">{steps.map((step, index) => <li key={step.title}><div className="step-track"><span>0{index + 1}</span>{index < 3 ? <ArrowRight size={19} /> : <Check size={19} />}</div><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></section>
-      <section className="about section" id="about" aria-labelledby="about-title"><div className="container"><div className="about-grid"><div><p className="eyebrow">03 / THE PEOPLE BEHIND THE SOLUTIONS</p><h2 id="about-title" tabIndex={-1}>Serious about the work.<br /><span className="muted-heading">Invested in your success.</span></h2></div><div className="about-copy"><p className="large-copy">Smart thinking. Hard work.<br />A personal commitment to getting it right.</p><p>RMSoftware is a software agency led by Sennelo Mulanga Gundo and Netshisaulu Ridokunda. We help businesses solve problems, improve how they work, and turn useful ideas into software.</p><p>We’re curious by nature and driven by the work. Whether you come to us with a clear idea or a challenge you haven’t quite defined, we take the time to understand it and take pride in building a solution that serves you well.</p></div></div><div className="team-values"><div className="directors"><article className="director"><span className="director-initials" aria-hidden="true">SMG</span><div><h3>Sennelo Mulanga Gundo</h3><p>Director · RMSoftware</p></div></article><article className="director"><span className="director-initials" aria-hidden="true">NR</span><div><h3>Netshisaulu Ridokunda</h3><p>Director · RMSoftware</p></div></article></div><div className="values"><p><ShieldCheck size={19} /><span><strong>Quality we take personally.</strong> Care in the details, from the first idea to the final handover.</span></p><p><MessageCircle size={19} /><span><strong>A partnership you can understand.</strong> Clear communication and honest, practical advice.</span></p></div></div></div></section>
-      <section className="contact-section container" id="contact" aria-labelledby="contact-title"><div className="contact-panel"><div><p className="eyebrow">04 / LET’S MAKE SOMETHING USEFUL</p><h2 id="contact-title" tabIndex={-1}>Your next step<br />starts with a <span>conversation.</span></h2><p>A bottleneck to fix. An idea to explore. A better way to work.<br />Tell us about your business and what you’d like to change.</p></div><div className="contact-details"><ArrowDownRight className="contact-arrow" size={76} strokeWidth={1} aria-hidden="true" />{contact.email || contact.whatsapp ? <div className="contact-links">{contact.email && <a className="button button-contact" href={`mailto:${contact.email}?subject=Let%E2%80%99s%20discuss%20my%20business`}><Mail size={18} /> Email us <ArrowUpRight size={18} /></a>}{contact.whatsapp && <a className="button button-contact-secondary" href={`https://wa.me/${contact.whatsapp.replace(/\D/g, '')}?text=Hi%20RMSoftware%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20solution%20for%20my%20business.`} target="_blank" rel="noopener noreferrer"><MessageCircle size={18} /> Talk on WhatsApp <ArrowUpRight size={18} /></a>}{contact.email && <span className="contact-email">{contact.email}</span>}</div> : <div className="contact-pending"><span className="contact-status">LET’S CONNECT SOON</span><p>Our direct enquiry channels<br />are being set up.</p><span>Contact details will be available here soon.</span></div>}</div></div></section>
-    </main>
-    <footer className="container footer"><div className="footer-main"><a href="#main" className="brand footer-brand" aria-label="RMSoftware home"><span className="logo-crop"><Image src="/images/logo.jpeg" width={1536} height={1024} alt="RMSoftware" unoptimized /></span></a><p>Built with purpose.<br /><span>Built around your business.</span></p><a href="#main" className="text-link">Back to top <ArrowUpRight size={17} /></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} RMSoftware. All rights reserved.</span><span className="theme-note"><Sun className="light-theme-icon" size={15} /><Moon className="dark-theme-icon" size={15} /> Light & dark appearance</span></div></footer>
-  </>;
+      <section
+        className="section services-section"
+        id="services"
+        aria-labelledby="services-title"
+      >
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">02 / WHAT WE BUILD</p>
+              <h2 id="services-title" tabIndex={-1}>
+                The right software.
+                <br />
+                <span className="muted-heading">
+                  For the work that matters.
+                </span>
+              </h2>
+            </div>
+            <p>
+              From a single workflow to a business-critical platform, start with
+              the outcome you need and build from there.
+            </p>
+          </div>
+          <div className="service-list">
+            {services.map((s, i) => (
+              <Link
+                className="service-row"
+                href={`/services/${s.slug}/`}
+                key={s.slug}
+              >
+                <span className="service-index">0{i + 1}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.examples}</p>
+                </div>
+                <span className="service-outcome">{s.short}</span>
+                <ArrowUpRight size={24} />
+              </Link>
+            ))}
+          </div>
+          <p className="services-note">
+            Not sure where your challenge fits?{' '}
+            <Link href="/contact/">
+              Let’s work it out together <ArrowRight size={16} />
+            </Link>
+          </p>
+        </div>
+      </section>
+      <section
+        className="section container"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <div className="why-grid">
+          <div>
+            <p className="eyebrow">03 / WHY RMSOFTWARE</p>
+            <h2 id="about-title" tabIndex={-1}>
+              A technology partner.
+              <br />
+              <span className="muted-heading">With your business in view.</span>
+            </h2>
+            <p className="section-intro">
+              Software is a business investment. Our approach starts with
+              understanding what needs to improve, then making the scope and
+              decisions clear.
+            </p>
+            <Link href="/contact/" className="text-link">
+              Meet us in a free consultation <ArrowUpRight size={17} />
+            </Link>
+          </div>
+          <div className="commitment-list">
+            {[
+              [
+                'Business context first',
+                'We look at the people, processes and constraints behind the request before recommending a solution.',
+              ],
+              [
+                'Clear scope and communication',
+                'Agree deliverables and milestones upfront. Review progress together and make changes deliberately.',
+              ],
+              [
+                'Built for the next chapter',
+                'Plan documentation, handover, maintenance and ongoing development as part of the conversation.',
+              ],
+            ].map(([title, text]) => (
+              <article key={title}>
+                <Check size={20} />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section
+        className="section process-section"
+        id="process"
+        aria-labelledby="process-title"
+      >
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">04 / HOW WE WORK</p>
+              <h2 id="process-title" tabIndex={-1}>
+                Clarity at every step.
+              </h2>
+            </div>
+            <p>
+              A defined path from the first conversation to software your team
+              can use.
+            </p>
+          </div>
+          <ol className="process-grid">
+            {steps.map(([title, text, output], i) => (
+              <li key={title}>
+                <div className="step-track">
+                  <span>0{i + 1}</span>
+                  <ArrowRight size={18} />
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <p className="step-output">{output}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      <section
+        className="section container"
+        id="solutions"
+        aria-labelledby="solutions-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">05 / SOLUTION EXAMPLES</p>
+            <h2 id="solutions-title" tabIndex={-1}>
+              See what better
+              <br />
+              <span className="muted-heading">could look like.</span>
+            </h2>
+          </div>
+          <p>
+            Illustrative solutions to common business problems. These are
+            examples of possible approaches, not completed client projects.
+          </p>
+        </div>
+        <div className="example-grid">
+          {examples.map(
+            ({
+              sector,
+              title,
+              problem,
+              solution,
+              technology,
+              impact,
+              icon: Icon,
+            }) => (
+              <article className="example-card" key={title}>
+                <div className="example-heading">
+                  <Icon size={27} />
+                  <span className="eyebrow">{sector}</span>
+                </div>
+                <h3>{title}</h3>
+                <dl>
+                  <dt>The problem</dt>
+                  <dd>{problem}</dd>
+                  <dt>The solution</dt>
+                  <dd>{solution}</dd>
+                  <dt>Technology approach</dt>
+                  <dd>{technology}</dd>
+                  <dt>Potential business impact</dt>
+                  <dd>{impact}</dd>
+                </dl>
+              </article>
+            ),
+          )}
+        </div>
+      </section>
+      <section className="technology-section">
+        <div className="container technology-grid">
+          <div>
+            <p className="eyebrow">06 / TECHNOLOGY WITH A PURPOSE</p>
+            <h2>
+              Business needs first.
+              <br />
+              Technology second.
+            </h2>
+          </div>
+          <div>
+            <p>
+              We choose the stack around your existing systems, security needs,
+              budget and long-term maintenance. The proposal explains the
+              choices and trade-offs.
+            </p>
+            <ul className="tech-tags">
+              <li>React & web interfaces</li>
+              <li>.NET & application services</li>
+              <li>SQL & business data</li>
+              <li>APIs & integrations</li>
+              <li>Cloud hosting</li>
+              <li>AI where it adds value</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section
+        className="section container team-section"
+        aria-labelledby="team-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">07 / PEOPLE YOU CAN SPEAK TO</p>
+            <h2 id="team-title">
+              Start with a conversation.
+              <br />
+              <span className="muted-heading">Know who’s behind the work.</span>
+            </h2>
+          </div>
+          <p>
+            RMSoftware is led by Sennelo Mulanga Gundo and Netshisaulu
+            Ridokunda. Talk to us about your operations, priorities and what you
+            need from a development partner.
+          </p>
+        </div>
+        <div className="team-strip">
+          <article>
+            <span className="director-initials" aria-hidden="true">
+              SMG
+            </span>
+            <div>
+              <h3>Sennelo Mulanga Gundo</h3>
+              <p>Director · RMSoftware</p>
+            </div>
+          </article>
+          <article>
+            <span className="director-initials" aria-hidden="true">
+              NR
+            </span>
+            <div>
+              <h3>Netshisaulu Ridokunda</h3>
+              <p>Director · RMSoftware</p>
+            </div>
+          </article>
+          <Link className="text-link" href="/contact/">
+            Let’s discuss the fit <ArrowUpRight size={18} />
+          </Link>
+        </div>
+      </section>
+      <ConsultationCTA />
+    </>
+  );
 }

@@ -2,8 +2,9 @@
 export const site = {
   name: 'RMSoftware',
   url: 'https://www.rmsoftware.co.za/',
-  title: 'Custom Software, Automation & AI Integration | RMSoftware',
-  description: 'RMSoftware builds custom software, business automation, AI integrations, WhatsApp tools, websites and mobile apps to save time and improve how your business works.',
+  title: 'Custom Software Development South Africa | RMSoftware',
+  description:
+    'Custom business software, web applications and automation for growing South African businesses. Streamline operations with RMSoftware. Book a free consultation.',
 };
 
 export const contact: { email: string; whatsapp: string } = {

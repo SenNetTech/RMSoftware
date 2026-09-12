@@ -7,8 +7,11 @@
   },
   "scripts": {
     "dev": "vinext dev",
+    "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vinext build",
     "check:seo": "node scripts/check-seo.mjs",
+    "check:enquiry": "node scripts/check-enquiry.mjs",
+    "check:navigation": "node scripts/check-navigation.mjs",
     "start": "vite preview --outDir dist/client --host 127.0.0.1",
     "lint": "oxlint",
     "format": "oxfmt"
