@@ -338,7 +338,7 @@ export default function Home() {
         </div>
         <div className="culture-copy">
           <div>
-            <p className="section-kicker">The people behind the work</p>
+            <p className="section-kicker"> Behind the work</p>
             <h2 id="culture-title">
               Good software starts with people who understand the problem.
             </h2>
