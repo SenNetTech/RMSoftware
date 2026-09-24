@@ -9,7 +9,7 @@ import {
   NativeSelectOption,
 } from '@/components/ui/native-select';
 import { Button } from '@/components/ui/button';
-import { budgets, projectTypes, timelines } from './services-data';
+import { projectTypes, timelines } from './services-data';
 import { contact } from './site-content';
 import {
   enquiryFields,
@@ -78,9 +78,12 @@ export default function EnquiryForm() {
       }}
     >
       <div className="form-heading">
-        <span className="eyebrow">YOUR PROJECT</span>
-        <h2>Tell us what needs to work better.</h2>
-        <p>All fields are required except your phone number.</p>
+        <span className="eyebrow">YOUR BUSINESS</span>
+        <h2>Tell us, in your own words, what could work better.</h2>
+        <p>
+          Only your contact details and a short description are required. No
+          technical terms, specification or budget estimate needed.
+        </p>
       </div>
       <fieldset>
         <legend className="sr-only">Business and project details</legend>
@@ -129,9 +132,7 @@ export default function EnquiryForm() {
             />
           </div>
           <div className="field full-field">
-            <label htmlFor="problem">
-              What problem are you trying to solve?
-            </label>
+            <label htmlFor="problem">What would you like to improve?</label>
             <Textarea
               id="problem"
               name="problem"
@@ -142,22 +143,24 @@ export default function EnquiryForm() {
               aria-describedby="problem-help"
             />
             <p id="problem-help" className="field-help">
-              Tell us about the current process, who uses it and what you would
-              like to improve. Please leave out passwords and sensitive customer
-              data.
+              Describe a slow manual task, a service you would like to offer
+              online, information that is hard to manage, or a system that no
+              longer works for you. No solution or technical detail is needed.
+              Please leave out passwords and sensitive customer data.
             </p>
           </div>
           <div className="field full-field">
-            <label htmlFor="projectType">Type of project</label>
+            <label htmlFor="projectType">
+              What do you think you may need? <span>(optional)</span>
+            </label>
             <NativeSelect
               id="projectType"
               name="projectType"
               ref={projectSelect}
-              required
               defaultValue=""
             >
-              <NativeSelectOption value="" disabled>
-                Select a project type
+              <NativeSelectOption value="">
+                Choose an option if you know
               </NativeSelectOption>
               {projectTypes.map((item) => (
                 <NativeSelectOption key={item} value={item}>
@@ -166,29 +169,13 @@ export default function EnquiryForm() {
               ))}
             </NativeSelect>
           </div>
-          <div className="field">
-            <label htmlFor="budget">Estimated budget</label>
-            <NativeSelect id="budget" name="budget" required defaultValue="">
-              <NativeSelectOption value="" disabled>
-                Select a budget range
-              </NativeSelectOption>
-              {budgets.map((item) => (
-                <NativeSelectOption key={item} value={item}>
-                  {item}
-                </NativeSelectOption>
-              ))}
-            </NativeSelect>
-          </div>
-          <div className="field">
-            <label htmlFor="timeline">Desired timeline</label>
-            <NativeSelect
-              id="timeline"
-              name="timeline"
-              required
-              defaultValue=""
-            >
-              <NativeSelectOption value="" disabled>
-                Select a timeline
+          <div className="field full-field">
+            <label htmlFor="timeline">
+              When would you like to get started? <span>(optional)</span>
+            </label>
+            <NativeSelect id="timeline" name="timeline" defaultValue="">
+              <NativeSelectOption value="">
+                Flexible or not sure yet
               </NativeSelectOption>
               {timelines.map((item) => (
                 <NativeSelectOption key={item} value={item}>
@@ -196,6 +183,10 @@ export default function EnquiryForm() {
                 </NativeSelectOption>
               ))}
             </NativeSelect>
+            <p className="field-help">
+              This helps us understand urgency. It does not commit you to a
+              delivery date.
+            </p>
           </div>
         </div>
         <p className="form-privacy">
@@ -206,7 +197,7 @@ export default function EnquiryForm() {
           This form prepares an email for you to send from your email app.
         </p>
         <Button type="submit" className="button button-primary form-submit">
-          Prepare Project Enquiry
+          Prepare Enquiry
           <ArrowUpRight size={18} />
         </Button>
       </fieldset>

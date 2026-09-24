@@ -4,13 +4,12 @@ import Link from '@/app/site-link';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import ThemeToggle from './theme-toggle';
 
 const links = [
-  ['Services', '/services/'],
-  ['Why RMSoftware', '/#about'],
-  ['Our process', '/#process'],
-  ['Solutions', '/#solutions'],
+  ['What we do', '/#what-we-do'],
+  ['Why us', '/#why-us'],
+  ['How we work', '/#process'],
+  ['Our people', '/#people'],
 ];
 
 export default function Header() {
@@ -32,7 +31,7 @@ export default function Header() {
         <Link href="/" className="brand" aria-label="RM Software home">
           <span className="logo-crop">
             <Image
-              src="/images/logo.jpeg"
+              src="/images/rmsoftware-logo-transparent.png"
               width={1536}
               height={1024}
               alt="RM Software"
@@ -48,20 +47,16 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/contact/"
-          className="button button-primary header-cta"
-        >
-          Free Consultation <ArrowUpRight size={17} />
+        <Link href="/contact/" className="button button-primary header-cta">
+          Start a conversation <ArrowUpRight size={17} />
         </Link>
-        <ThemeToggle />
         <details className="mobile-nav" ref={disclosure}>
           <summary aria-label="Toggle navigation">
             <Menu className="menu-open" size={24} />
             <X className="menu-close" size={24} />
           </summary>
           <nav aria-label="Mobile navigation">
-            {[...links, ['Book a Free Consultation', '/contact/']].map(
+            {[...links, ['Start a conversation', '/contact/']].map(
               ([label, href]) => (
                 <Link
                   key={href}

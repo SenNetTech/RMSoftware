@@ -141,15 +141,6 @@ export const projectTypes = [
   ...services.map((service) => service.title),
   'Not sure yet',
 ];
-export const budgets = [
-  'R20,000–R50,000',
-  'R50,000–R150,000',
-  'R150,000–R500,000',
-  'R500,000+',
-  'Ongoing: R5,000–R15,000/month',
-  'Ongoing: R15,000–R50,000+/month',
-  'Need help scoping',
-];
 export const timelines = [
   'As soon as practical',
   'Within 1–3 months',

@@ -1,60 +1,76 @@
 import Link from '@/app/site-link';
-import { Mail, MessageCircle, Check } from 'lucide-react';
-import { contact } from '../site-content';
-import { pageMetadata } from '../page-metadata';
+import { Check, Mail, MessageCircle } from 'lucide-react';
 import EnquiryForm from '../enquiry-form';
+import { pageMetadata } from '../page-metadata';
+import { contact } from '../site-content';
+
 export const metadata = pageMetadata(
-  'Book a Free Software Consultation',
-  'Discuss your custom software, automation or web application project with RMSoftware. Share your business challenge, budget and timeline to arrange a free consultation.',
+  'Start a Conversation',
+  'Tell RMSoftware what could work better in your business. No technical brief or budget estimate is needed—we will help shape the scope, cost and delivery plan.',
   '/contact/',
 );
+
 export default function ContactPage() {
   return (
     <>
       <section className="container page-hero contact-hero">
-        <p className="eyebrow">LET’S EXPLORE THE RIGHT NEXT STEP</p>
+        <p className="eyebrow">START WITH THE BUSINESS PROBLEM</p>
         <h1>
-          Better software starts
+          You do not need
           <br />
-          <span>with your business.</span>
+          <span>a technical brief.</span>
         </h1>
         <p className="lead">
-          Tell us what’s slowing you down or what you want to build. Start with
-          a free consultation to explore the fit, priorities and practical
-          options.
+          Tell us what feels slow, difficult or disconnected in your business.
+          We will help you work out whether software can improve it—and explain
+          the practical options in plain language.
         </p>
       </section>
+
       <section className="container contact-layout">
         <aside className="contact-aside">
           <h2>What happens next?</h2>
           <ol>
-            <li>Share a little about your business and the problem.</li>
             <li>
-              We review the details and contact you to arrange a conversation.
+              Share the situation in your own words. You do not need to know
+              what technology or system you need.
             </li>
             <li>
-              If there’s a fit, we define the scope and next steps together.
+              We arrange a conversation to understand the people, process and
+              business outcome involved.
+            </li>
+            <li>
+              If software makes sense, we recommend a practical starting point
+              and explain how the work could be delivered in stages.
+            </li>
+            <li>
+              Before work begins, you receive a clear written proposal covering
+              what we will build, the cost, the delivery stages and the expected
+              timeline.
             </li>
           </ol>
+
           <div className="fit-note">
-            <h3>A useful starting point</h3>
+            <h3>Cost and delivery, made clear</h3>
             <p>
-              This enquiry is designed for software projects from R20,000 to
-              R500,000+ and ongoing partnerships from R5,000 to R50,000+ per
-              month.
+              We will not ask you to guess a budget or define a complete system
+              upfront. First, we understand what needs to improve and which part
+              would create the most value.
             </p>
             <p>
-              These are planning ranges, not a quote. If you’re unsure, choose
-              “Need help scoping”.
+              Larger end-to-end systems can be planned in manageable stages. You
+              will know what each stage delivers, what it costs and what
+              decisions are needed before you commit to it.
             </p>
           </div>
+
+          <p className="contact-reassurance">
+            <Check size={17} /> No technical knowledge required
+          </p>
           <p className="contact-reassurance">
             <Check size={17} /> No obligation to proceed
           </p>
-          <Link
-            className="text-link"
-            href={`mailto:${contact.email}`}
-          >
+          <Link className="text-link" href={`mailto:${contact.email}`}>
             <Mail size={17} />
             {contact.email}
           </Link>

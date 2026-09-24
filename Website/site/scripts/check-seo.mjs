@@ -138,7 +138,8 @@ for (const [path, html] of htmlByRoute) {
     assert.equal(org.url, site.url);
     assert.ok(existsSync(new URL(`.${new URL(org.logo).pathname}`, output)));
     assert.ok(html.includes('Custom software development'));
-    assert.ok(html.includes('not completed client projects'));
+    assert.ok(html.includes('The result is the point.'));
+    assert.ok(html.includes('Client work is published with approval'));
   }
   if (path.startsWith('/services/') && path !== '/services/') {
     assert.equal(jsonScripts.length, 1);
@@ -162,7 +163,6 @@ for (const field of [
   'phone',
   'problem',
   'projectType',
-  'budget',
   'timeline',
 ]) {
   assert.ok(
@@ -171,6 +171,11 @@ for (const field of [
   );
   assert.ok(contactHtml.includes(`for="${field}"`), `Contact labels ${field}`);
 }
+assert.ok(!contactHtml.includes('name="budget"'), 'Contact omits budget input');
+assert.ok(
+  contactHtml.includes('You do not need'),
+  'Contact welcomes non-technical enquiries',
+);
 const robots = readFileSync(new URL('robots.txt', output), 'utf8');
 assert.match(robots, /User-Agent: \*/i);
 assert.match(robots, /^Allow: \/\s*$/im);

@@ -27,7 +27,7 @@ All page and section links use `app/site-link.tsx`, a native anchor wrapper. Vin
 
 - `app/page.tsx`: homepage conversion flow and explicitly illustrative solution examples. No client base has been established; do not present these as completed projects, or add invented testimonials, logos or results.
 - `app/services-data.ts`: five service offers, deliverables, FAQ content and qualification options. `/services/` and `/services/[slug]/` expose dedicated pages.
-- `app/contact/page.tsx` and `app/enquiry-form.tsx`: qualified project enquiry with name, company, work email, optional phone, business problem, project type, budget and timeline.
+- `app/contact/page.tsx` and `app/enquiry-form.tsx`: plain-language enquiry with name, company, work email, optional phone, the business situation, and optional project type and starting timeframe. The form does not request a budget.
 - `app/site-content.ts`: canonical production origin, verified email and optional verified international WhatsApp number. Blank WhatsApp is intentionally hidden.
 - `app/globals.css` and `app/site-styles.css`: shared brand tokens, responsive design, touch targets, focus states and reduced motion. Existing logo retained.
 - `app/privacy/page.tsx`: enquiry and cookie information. Update it when providers or actual processing practices change.

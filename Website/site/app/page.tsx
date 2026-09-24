@@ -1,19 +1,16 @@
 import Link from '@/app/site-link';
+import Image from 'next/image';
 import {
+  ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
-  Check,
-  CheckCheck,
-  ClipboardList,
-  Database,
-  Layers3,
-  Network,
-  ShieldCheck,
+  Blocks,
+  PanelsTopLeft,
+  RefreshCw,
   Workflow,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { site } from './site-content';
-import { services } from './services-data';
 import StructuredData from './structured-data';
 import { ConsultationCTA } from './site-shell';
 
@@ -28,452 +25,337 @@ export const metadata: Metadata = {
     description: site.description,
   },
 };
-const steps = [
-  [
-    'Discover',
-    'We discuss the bottleneck, who it affects and what a useful result would look like.',
-    'A shared understanding of the problem',
-  ],
-  [
-    'Define',
-    'We agree the scope, priorities, costs and milestones before development begins.',
-    'A clear proposal and delivery plan',
-  ],
-  [
-    'Build & validate',
-    'You see progress regularly. We test the software against the work your team actually does.',
-    'Working software, shaped by your feedback',
-  ],
-  [
-    'Launch & support',
-    'We plan the rollout, hand over documentation and agree how to maintain and improve the system.',
-    'A supported transition into everyday use',
-  ],
-];
-const examples = [
+
+const capabilities = [
   {
-    sector: 'PROFESSIONAL SERVICES',
-    title: 'From inbox to client portal',
-    problem:
-      'Client requests, documents and status updates are scattered across email.',
-    solution: 'A shared portal for requests, files, approvals and progress.',
-    technology: 'Web application · Role-based access · Notifications',
-    impact:
-      'Clients could check progress themselves while staff work from one request history.',
-    icon: ClipboardList,
+    number: '01',
+    title: 'Custom Software',
+    copy: 'Software built around the way your business actually works.',
+    href: '/services/custom-business-software/',
+    icon: Blocks,
   },
   {
-    sector: 'LOGISTICS & OPERATIONS',
-    title: 'A clearer view of every job',
-    problem: 'Job progress lives in spreadsheets and WhatsApp conversations.',
-    solution: 'An operations dashboard with assigned tasks and status updates.',
-    technology: 'Custom software · Database · System integrations',
-    impact:
-      'Dispatch and operations teams could see outstanding work and follow up from one place.',
-    icon: Layers3,
-  },
-  {
-    sector: 'GROWING BUSINESSES',
-    title: 'An enquiry that keeps moving',
-    problem: 'Teams retype customer details and manually chase each next step.',
-    solution:
-      'An enquiry-to-quote workflow with approvals and follow-up reminders.',
-    technology: 'Workflow automation · APIs · Human approval steps',
-    impact:
-      'An approved enquiry could move forward without repeated data entry between tools.',
+    number: '02',
+    title: 'Business Process Automation',
+    copy: 'Reduce repetitive work and give your team more time to focus on what matters.',
+    href: '/services/business-process-automation/',
     icon: Workflow,
   },
+  {
+    number: '03',
+    title: 'Web & Digital Platforms',
+    copy: 'Reliable digital platforms designed around your customers and operations.',
+    href: '/services/web-application-development/',
+    icon: PanelsTopLeft,
+  },
+  {
+    number: '04',
+    title: 'Software Improvement',
+    copy: 'Improve, modernise or extend the systems your business already relies on.',
+    href: '/services/software-modernization-integration/',
+    icon: RefreshCw,
+  },
 ];
-function WorkflowDiagram() {
+
+const principles = [
+  {
+    title: 'Understand the problem.',
+    copy: 'We start with your business, not the technology.',
+  },
+  {
+    title: 'Build what matters.',
+    copy: 'We focus on solutions that solve genuine problems.',
+  },
+  {
+    title: 'Think long term.',
+    copy: 'We build solutions that can keep supporting the business as it grows.',
+  },
+];
+
+const process = [
+  {
+    number: '01',
+    title: 'Understand',
+    copy: 'We learn how your business works and where the real problems are.',
+  },
+  {
+    number: '02',
+    title: 'Plan',
+    copy: 'We identify where technology can create the greatest value.',
+  },
+  {
+    number: '03',
+    title: 'Build',
+    copy: 'We design and develop the right solution.',
+  },
+  {
+    number: '04',
+    title: 'Improve',
+    copy: 'We support and improve the solution as your business grows.',
+  },
+];
+
+function ClientGroup({ hidden = false }: { hidden?: boolean }) {
   return (
-    <figure className="workflow-diagram">
-      <figcaption>
-        <span className="eyebrow">A BETTER WAY TO WORK</span>
-        <span className="diagram-index">RM / 01</span>
-      </figcaption>
-      <div className="workflow-before">
-        <span className="diagram-label">FROM DISCONNECTED</span>
-        <div>
-          <span>Spreadsheets</span>
-          <span>Email threads</span>
-          <span>Manual updates</span>
-        </div>
-      </div>
-      <div className="workflow-connection" aria-hidden="true">
-        <span />
-        <ArrowRight size={20} />
-      </div>
-      <div className="workflow-system">
-        <Network size={28} />
-        <div>
-          <strong>Your business. One connected system.</strong>
-          <p>People, processes and information, working together.</p>
-        </div>
-      </div>
-      <div className="workflow-results">
-        <div>
-          <CheckCheck size={19} />
-          <span>Less repeat admin</span>
-        </div>
-        <div>
-          <Database size={19} />
-          <span>Clearer information</span>
-        </div>
-        <div>
-          <ShieldCheck size={19} />
-          <span>More control</span>
-        </div>
-      </div>
-      <p className="diagram-footnote">
-        A practical approach, built around your operations.
-      </p>
-    </figure>
+    <div className="client-group" aria-hidden={hidden || undefined}>
+      <span className="client-wordmark makhado-mark">
+        <Image
+          src="/images/clients/makhado-logo.png"
+          alt="Makhado & Associates"
+          width={1791}
+          height={878}
+          sizes="180px"
+        />
+      </span>
+      <span className="client-wordmark rayoni-mark">
+        <Image
+          src="/images/clients/rayoni-logo.png"
+          alt="Rayoni"
+          width={1254}
+          height={1254}
+          sizes="110px"
+        />
+      </span>
+    </div>
   );
 }
+
 export default function Home() {
   return (
     <>
       <StructuredData />
-      <section className="hero container" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> SOFTWARE FOR GROWING BUSINESSES
-          </p>
-          <h1 id="hero-title">
-            Less busywork.
-            <br />
-            <span>More business.</span>
-          </h1>
-          <p className="hero-description">
-            Custom software development that helps your business automate
-            operations, work efficiently and scale.
-          </p>
-          <p className="hero-detail">
-            Replace spreadsheet workarounds and disconnected systems with
-            software built around your team. A technology partner for growing
-            businesses across South Africa.
-          </p>
-          <div className="hero-actions">
-            <Link
-              className="button button-primary"
-              href="/contact/"
-            >
-              Book a Free Consultation <ArrowUpRight size={19} />
-            </Link>
-            <Link
-              className="text-link"
-              href="/contact/#project-form"
-            >
-              Discuss Your Project <ArrowRight size={17} />
-            </Link>
+
+      <section className="home-hero" aria-labelledby="hero-title">
+        <div className="container home-hero-grid">
+          <div className="home-hero-copy">
+            <p className="section-kicker">
+              Independent software agency · South Africa
+            </p>
+            <h1 id="hero-title">Your ideal software partner.</h1>
+            <p className="home-hero-lead">
+              We build practical software solutions that help businesses work
+              smarter, operate more efficiently and grow.
+            </p>
+            <p className="home-hero-detail">
+              RMSoftware helps businesses improve their processes through
+              technology. We focus on measurable business value—not technology
+              for technology&apos;s sake.
+            </p>
+            <div className="home-hero-actions">
+              <Link className="button button-primary" href="/contact/">
+                Start a conversation <ArrowUpRight size={18} />
+              </Link>
+              <Link className="editorial-link" href="#what-we-do">
+                See what we do <ArrowDownRight size={18} />
+              </Link>
+            </div>
           </div>
-          <p className="hero-note">
-            A practical first conversation. No technical brief needed.
-          </p>
+
+          <figure className="home-hero-visual">
+            <Image
+              src="/images/rmsoftware-team-hero.webp"
+              alt="A software team discussing a project together in a Johannesburg studio"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 56vw"
+            />
+            <figcaption>
+              <span>People first</span>
+              <span>Business always</span>
+            </figcaption>
+          </figure>
         </div>
-        <WorkflowDiagram />
-      </section>
-      <div className="outcome-strip">
-        <div className="container">
-          <span>BUILT AROUND BUSINESS OUTCOMES</span>
-          <p>
-            <Check size={17} /> Less repetitive work
-          </p>
-          <p>
-            <Check size={17} /> Better operational visibility
-          </p>
-          <p>
-            <Check size={17} /> Room to grow
-          </p>
-        </div>
-      </div>
-      <section className="section container" aria-labelledby="problems-title">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">01 / THE BOTTLENECK</p>
-            <h2 id="problems-title">
-              Your business has grown.
-              <br />
-              <span className="muted-heading">Your systems haven’t.</span>
-            </h2>
-          </div>
-          <p>
-            When everyday work depends on workarounds, growth adds more admin.
-            The right software gives your team a better way forward.
-          </p>
-        </div>
-        <div className="problem-grid">
-          {[
-            [
-              'Too much copying. Not enough doing.',
-              'The same information moves between spreadsheets, email and disconnected tools. Small changes create a chain of manual updates.',
-            ],
-            [
-              'Progress is hard to see.',
-              'Job status lives in someone’s inbox or a WhatsApp thread. Managers spend time chasing answers instead of making decisions.',
-            ],
-            [
-              'Your tools no longer fit.',
-              'Off-the-shelf software cannot quite handle your processes. Your team works around it, and the exceptions keep growing.',
-            ],
-          ].map(([title, text], i) => (
-            <article key={title}>
-              <span className="card-number">0{i + 1}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
+        <div className="hero-side-note" aria-hidden="true">
+          Scroll to explore <ArrowDownRight size={15} />
         </div>
       </section>
+
+      <section className="client-marquee" aria-label="Trusted clients">
+        <div className="container client-marquee-label">
+          <span>Trusted by businesses including</span>
+        </div>
+        <div className="client-marquee-window">
+          <div className="client-track">
+            <ClientGroup />
+            <ClientGroup hidden />
+            <ClientGroup hidden />
+            <ClientGroup hidden />
+          </div>
+        </div>
+      </section>
+
       <section
-        className="section services-section"
-        id="services"
-        aria-labelledby="services-title"
+        className="capabilities-section"
+        id="what-we-do"
+        aria-labelledby="capabilities-title"
       >
         <div className="container">
-          <div className="section-heading">
+          <div className="editorial-heading light-on-dark">
+            <p className="section-kicker">What we actually do</p>
             <div>
-              <p className="eyebrow">02 / WHAT WE BUILD</p>
-              <h2 id="services-title" tabIndex={-1}>
-                The right software.
-                <br />
-                <span className="muted-heading">
-                  For the work that matters.
-                </span>
+              <h2 id="capabilities-title">
+                Technology that makes your business work better.
               </h2>
+              <p>
+                We look at how your business operates, identify where technology
+                can make a meaningful difference, and build the right solution
+                around it.
+              </p>
             </div>
-            <p>
-              From a single workflow to a business-critical platform, start with
-              the outcome you need and build from there.
-            </p>
           </div>
-          <div className="service-list">
-            {services.map((s, i) => (
-              <Link
-                className="service-row"
-                href={`/services/${s.slug}/`}
-                key={s.slug}
-              >
-                <span className="service-index">0{i + 1}</span>
-                <div>
-                  <h3>{s.title}</h3>
-                  <p>{s.examples}</p>
-                </div>
-                <span className="service-outcome">{s.short}</span>
-                <ArrowUpRight size={24} />
+
+          <div className="capability-list">
+            {capabilities.map(({ number, title, copy, href, icon: Icon }) => (
+              <Link className="capability-row" href={href} key={title}>
+                <span className="capability-number">{number}</span>
+                <Icon aria-hidden="true" size={26} strokeWidth={1.5} />
+                <h3>{title}</h3>
+                <p>{copy}</p>
+                <ArrowUpRight className="capability-arrow" size={24} />
               </Link>
             ))}
           </div>
-          <p className="services-note">
-            Not sure where your challenge fits?{' '}
-            <Link href="/contact/">
-              Let’s work it out together <ArrowRight size={16} />
-            </Link>
+        </div>
+      </section>
+
+      <section className="belief-section" aria-label="Our point of view">
+        <div className="container belief-grid">
+          <p className="section-kicker">Our point of view</p>
+          <p className="belief-statement">
+            We build technology <em>when it makes business sense.</em>
           </p>
         </div>
       </section>
+
       <section
-        className="section container"
-        id="about"
-        aria-labelledby="about-title"
+        className="return-section"
+        id="why-us"
+        aria-labelledby="return-title"
       >
-        <div className="why-grid">
-          <div>
-            <p className="eyebrow">03 / WHY RMSOFTWARE</p>
-            <h2 id="about-title" tabIndex={-1}>
-              A technology partner.
-              <br />
-              <span className="muted-heading">With your business in view.</span>
-            </h2>
-            <p className="section-intro">
-              Software is a business investment. Our approach starts with
-              understanding what needs to improve, then making the scope and
-              decisions clear.
+        <div className="container return-grid">
+          <div className="return-intro">
+            <p className="section-kicker">Why RMSoftware</p>
+            <h2 id="return-title">Software should deliver a return.</h2>
+            <p>
+              A software project should make your business better—not simply
+              give you more technology. That is why we understand the business
+              before recommending what to build.
             </p>
-            <Link href="/contact/" className="text-link">
-              Meet us in a free consultation <ArrowUpRight size={17} />
-            </Link>
           </div>
-          <div className="commitment-list">
-            {[
-              [
-                'Business context first',
-                'We look at the people, processes and constraints behind the request before recommending a solution.',
-              ],
-              [
-                'Clear scope and communication',
-                'Agree deliverables and milestones upfront. Review progress together and make changes deliberately.',
-              ],
-              [
-                'Built for the next chapter',
-                'Plan documentation, handover, maintenance and ongoing development as part of the conversation.',
-              ],
-            ].map(([title, text]) => (
+          <div className="principle-list">
+            {principles.map(({ title, copy }, index) => (
               <article key={title}>
-                <Check size={20} />
+                <span>0{index + 1}</span>
                 <div>
                   <h3>{title}</h3>
-                  <p>{text}</p>
+                  <p>{copy}</p>
                 </div>
               </article>
             ))}
           </div>
         </div>
       </section>
+
       <section
-        className="section process-section"
+        className="process-home-section"
         id="process"
         aria-labelledby="process-title"
       >
         <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">04 / HOW WE WORK</p>
-              <h2 id="process-title" tabIndex={-1}>
-                Clarity at every step.
-              </h2>
-            </div>
+          <div className="process-home-heading">
+            <p className="section-kicker">How we work</p>
+            <h2 id="process-title">Simple on purpose.</h2>
             <p>
-              A defined path from the first conversation to software your team
-              can use.
+              Clear thinking, open communication and a process built around the
+              outcome—not the ceremony.
             </p>
           </div>
-          <ol className="process-grid">
-            {steps.map(([title, text, output], i) => (
+          <ol className="process-home-grid">
+            {process.map(({ number, title, copy }, index) => (
               <li key={title}>
-                <div className="step-track">
-                  <span>0{i + 1}</span>
-                  <ArrowRight size={18} />
+                <div className="process-home-track">
+                  <span>{number}</span>
+                  {index < process.length - 1 && <ArrowRight size={19} />}
                 </div>
                 <h3>{title}</h3>
-                <p>{text}</p>
-                <p className="step-output">{output}</p>
+                <p>{copy}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
-      <section
-        className="section container"
-        id="solutions"
-        aria-labelledby="solutions-title"
-      >
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">05 / SOLUTION EXAMPLES</p>
-            <h2 id="solutions-title" tabIndex={-1}>
-              See what better
-              <br />
-              <span className="muted-heading">could look like.</span>
-            </h2>
-          </div>
-          <p>
-            Illustrative solutions to common business problems. These are
-            examples of possible approaches, not completed client projects.
-          </p>
-        </div>
-        <div className="example-grid">
-          {examples.map(
-            ({
-              sector,
-              title,
-              problem,
-              solution,
-              technology,
-              impact,
-              icon: Icon,
-            }) => (
-              <article className="example-card" key={title}>
-                <div className="example-heading">
-                  <Icon size={27} />
-                  <span className="eyebrow">{sector}</span>
-                </div>
-                <h3>{title}</h3>
-                <dl>
-                  <dt>The problem</dt>
-                  <dd>{problem}</dd>
-                  <dt>The solution</dt>
-                  <dd>{solution}</dd>
-                  <dt>Technology approach</dt>
-                  <dd>{technology}</dd>
-                  <dt>Potential business impact</dt>
-                  <dd>{impact}</dd>
-                </dl>
-              </article>
-            ),
-          )}
-        </div>
-      </section>
-      <section className="technology-section">
-        <div className="container technology-grid">
-          <div>
-            <p className="eyebrow">06 / TECHNOLOGY WITH A PURPOSE</p>
-            <h2>
-              Business needs first.
-              <br />
-              Technology second.
-            </h2>
-          </div>
-          <div>
+
+      <section className="work-section" id="work" aria-labelledby="work-title">
+        <div className="container">
+          <div className="work-heading">
+            <p className="section-kicker">Selected partnerships</p>
+            <h2 id="work-title">The result is the point.</h2>
             <p>
-              We choose the stack around your existing systems, security needs,
-              budget and long-term maintenance. The proposal explains the
-              choices and trade-offs.
+              We are building our portfolio with ambitious South African
+              businesses. Client work is published with approval and always
+              explained through the change it created.
             </p>
-            <ul className="tech-tags">
-              <li>React & web interfaces</li>
-              <li>.NET & application services</li>
-              <li>SQL & business data</li>
-              <li>APIs & integrations</li>
-              <li>Cloud hosting</li>
-              <li>AI where it adds value</li>
-            </ul>
+          </div>
+          <div className="work-proof-grid">
+            <div className="partner-panel">
+              <span className="partner-panel-label">Working with</span>
+              <div className="partner-names">
+                <span>Makhado & Associates</span>
+                <span>Rayoni</span>
+              </div>
+            </div>
+            <div className="impact-panel">
+              <span className="impact-panel-index">01</span>
+              <h3>The problem</h3>
+              <p>What is getting in the way of the business?</p>
+            </div>
+            <div className="impact-panel">
+              <span className="impact-panel-index">02</span>
+              <h3>The solution</h3>
+              <p>What is the simplest useful thing we can build?</p>
+            </div>
+            <div className="impact-panel impact-panel-result">
+              <span className="impact-panel-index">03</span>
+              <h3>The result</h3>
+              <p>What became faster, clearer or more profitable?</p>
+            </div>
           </div>
         </div>
       </section>
+
       <section
-        className="section container team-section"
-        aria-labelledby="team-title"
+        className="culture-section"
+        id="people"
+        aria-labelledby="culture-title"
       >
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">07 / PEOPLE YOU CAN SPEAK TO</p>
-            <h2 id="team-title">
-              Start with a conversation.
-              <br />
-              <span className="muted-heading">Know who’s behind the work.</span>
-            </h2>
-          </div>
-          <p>
-            RMSoftware is led by Sennelo Mulanga Gundo and Netshisaulu
-            Ridokunda. Talk to us about your operations, priorities and what you
-            need from a development partner.
-          </p>
+        <div className="culture-image">
+          <Image
+            src="/images/rmsoftware-culture.webp"
+            alt="Two software professionals working through a business process together"
+            fill
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
         </div>
-        <div className="team-strip">
-          <article>
-            <span className="director-initials" aria-hidden="true">
-              SMG
-            </span>
-            <div>
-              <h3>Sennelo Mulanga Gundo</h3>
-              <p>Director · RMSoftware</p>
-            </div>
-          </article>
-          <article>
-            <span className="director-initials" aria-hidden="true">
-              NR
-            </span>
-            <div>
-              <h3>Netshisaulu Ridokunda</h3>
-              <p>Director · RMSoftware</p>
-            </div>
-          </article>
-          <Link className="text-link" href="/contact/">
-            Let’s discuss the fit <ArrowUpRight size={18} />
+        <div className="culture-copy">
+          <div>
+            <p className="section-kicker">The people behind the work</p>
+            <h2 id="culture-title">
+              Good software starts with people who understand the problem.
+            </h2>
+            <p>
+              We bring clear thinking, practical experience and real
+              care to every conversation.
+            </p>
+          </div>
+          <Link
+            className="editorial-link editorial-link-light"
+            href="/contact/"
+          >
+            Meet us in a conversation <ArrowUpRight size={18} />
           </Link>
         </div>
       </section>
+
       <ConsultationCTA />
     </>
   );

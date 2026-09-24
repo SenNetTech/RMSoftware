@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { validateEnquiry, formatEnquiry } from '../app/enquiry-data.ts';
-import { budgets, projectTypes, timelines } from '../app/services-data.ts';
+import { projectTypes, timelines } from '../app/services-data.ts';
 const valid = {
   name: 'Example Person',
   company: 'Example Business',
@@ -8,7 +8,6 @@ const valid = {
   phone: '+27 11 555 0100',
   problem: 'We need one place to manage incoming customer requests.',
   projectType: projectTypes[0],
-  budget: budgets[0],
   timeline: timelines[0],
 };
 assert.equal(validateEnquiry(valid), null);
@@ -17,6 +16,11 @@ assert.equal(
   null,
   'Phone must remain optional',
 );
+assert.equal(
+  validateEnquiry({ ...valid, projectType: '', timeline: '' }),
+  null,
+  'Project type and timing must remain optional',
+);
 for (const patch of [
   { name: ' ' },
   { company: '' },
@@ -24,8 +28,7 @@ for (const patch of [
   { phone: 'letters' },
   { problem: 'Too short' },
   { problem: 'x'.repeat(4001) },
-  { budget: 'tampered' },
-  { timeline: '' },
+  { timeline: 'tampered' },
   { projectType: 'tampered' },
 ])
   assert.ok(
@@ -38,6 +41,7 @@ for (const value of Object.values(valid))
     'The email draft must preserve every field',
   );
 assert.ok(formatEnquiry({ ...valid, phone: '' }).includes('Not provided'));
+assert.ok(!formatEnquiry(valid).includes('Budget:'));
 console.log(
-  'Enquiry checks passed: required fields, optional phone, validation limits and complete email drafts. No messages sent.',
+  'Enquiry checks passed: no budget field, optional phone/project type/timing, validation limits and complete email drafts. No messages sent.',
 );

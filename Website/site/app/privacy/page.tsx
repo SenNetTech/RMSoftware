@@ -18,9 +18,10 @@ export default function PrivacyPage() {
       <h2>Information you share</h2>
       <p>
         The project form asks for your name, company, work email, optional phone
-        number, business problem, project type, budget and timeline. Please do
-        not include passwords, financial account details or sensitive customer
-        information.
+        number and a description of what you would like to improve. You may also
+        share a possible project type and preferred starting timeframe. Please
+        do not include passwords, financial account details or sensitive
+        customer information.
       </p>
       <h2>How enquiries work</h2>
       <p>

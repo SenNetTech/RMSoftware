@@ -13,7 +13,7 @@ export default function StructuredData() {
         alternateName: 'RM Software',
         url: site.url,
         description: site.description,
-        logo: new URL('/images/logo.jpeg', site.url).href,
+        logo: new URL('/images/rmsoftware-logo-transparent.png', site.url).href,
         email: contact.email,
         contactPoint: {
           '@type': 'ContactPoint',

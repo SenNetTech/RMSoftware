@@ -2,9 +2,9 @@
 export const site = {
   name: 'RMSoftware',
   url: 'https://www.rmsoftware.co.za/',
-  title: 'Custom Software Development South Africa | RMSoftware',
+  title: 'Your Ideal Software Partner | RMSoftware',
   description:
-    'Custom business software, web applications and automation for growing South African businesses. Streamline operations with RMSoftware. Book a free consultation.',
+    'Custom software development and practical digital solutions that help businesses work smarter, operate more efficiently and grow. RMSoftware builds technology when it makes business sense.',
 };
 
 export const contact: { email: string; whatsapp: string } = {
