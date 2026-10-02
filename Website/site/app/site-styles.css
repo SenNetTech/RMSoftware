@@ -2505,6 +2505,6 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   .client-track {
-    animation: client-scroll 48s linear infinite !important;
+    animation: client-scroll 16s linear infinite !important;
   }
 }
