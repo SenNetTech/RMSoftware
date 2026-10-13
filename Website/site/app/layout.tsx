@@ -46,6 +46,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
+          id="theme-init"
           dangerouslySetInnerHTML={{
             __html: `try{var theme=localStorage.getItem('rmsoftware-theme');if(theme==='light'||theme==='dark')document.documentElement.dataset.theme=theme;}catch{}`,
           }}

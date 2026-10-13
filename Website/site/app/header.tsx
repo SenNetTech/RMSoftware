@@ -4,6 +4,7 @@ import Link from '@/app/site-link';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import ThemeToggle from './theme-toggle';
 
 const links = [
   ['What we do', '/#what-we-do'],
@@ -50,6 +51,7 @@ export default function Header() {
         <Link href="/contact/" className="button button-primary header-cta">
           Start a conversation <ArrowUpRight size={17} />
         </Link>
+        <ThemeToggle />
         <details className="mobile-nav" ref={disclosure}>
           <summary aria-label="Toggle navigation">
             <Menu className="menu-open" size={24} />

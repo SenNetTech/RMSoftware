@@ -17,7 +17,7 @@ npm run check:seo
 
 The production build exports nine content routes and a 404 page to `dist/client`. The prebuild step regenerates the sitemap. SEO checks inspect the deployable HTML for unique metadata, canonical links, structured data, working internal links/anchors, enquiry labels and encoding. Enquiry checks validate input and complete email drafts; they never send messages.
 
-Browser visual/interaction testing and field Core Web Vitals measurements have not been performed. Static rendering, local fonts, restrained client code, disabled link prefetch and reserved image dimensions support performance; they do not establish a measured score.
+Browser appearance checks cover light and dark modes on all nine content routes, mobile widths down to 320px, desktop header breakpoints, keyboard toggling, reload/navigation persistence and syncing between tabs. Theme behavior checks also cover device preferences, invalid saved values and unavailable storage. Field Core Web Vitals measurements have not been performed. Static rendering, local fonts, restrained client code, disabled link prefetch and reserved image dimensions support performance; they do not establish a measured score.
 
 ## Static page navigation
 
@@ -30,6 +30,7 @@ All page and section links use `app/site-link.tsx`, a native anchor wrapper. Vin
 - `app/contact/page.tsx` and `app/enquiry-form.tsx`: plain-language enquiry with name, company, work email, optional phone, the business situation, and optional project type and starting timeframe. The form does not request a budget.
 - `app/site-content.ts`: canonical production origin, verified email and optional verified international WhatsApp number. Blank WhatsApp is intentionally hidden.
 - `app/globals.css` and `app/site-styles.css`: shared brand tokens, responsive design, touch targets, focus states and reduced motion. Existing logo retained.
+- `app/theme-toggle.tsx`: keyboard-accessible light/dark switch in the shared desktop and mobile header. Appearance follows the device preference until changed, saves under `rmsoftware-theme` in local storage, and stays in sync across open tabs. The layout restores saved appearance before the page paints; toggling still works when storage is unavailable. Homepage sections, client logos, footer and enquiry controls use the shared theme palettes.
 - `app/privacy/page.tsx`: enquiry and cookie information. Update it when providers or actual processing practices change.
 
 ## Enquiries and privacy
