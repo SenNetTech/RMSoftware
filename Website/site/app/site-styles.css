@@ -1485,6 +1485,7 @@ h3 {
 }
 
 .section-kicker {
+  color: var(--primary);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 600;
@@ -1497,6 +1498,7 @@ h3 {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse at 5% 15%, var(--hero-wash), transparent 65%);
 }
 
 .home-hero-grid {
@@ -1591,7 +1593,7 @@ h3 {
 .home-hero-visual img {
   object-fit: cover;
   object-position: 56% center;
-  filter: saturate(0.72) contrast(1.04);
+  filter: saturate(0.95) contrast(1.02);
   transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -1722,7 +1724,7 @@ h3 {
 
 .capabilities-section {
   padding-block: 126px;
-  background: var(--feature-surface);
+  background: linear-gradient(120deg, var(--feature-wash), transparent 65%), var(--feature-surface);
   color: var(--feature-foreground);
 }
 
@@ -1750,7 +1752,7 @@ h3 {
 }
 
 .light-on-dark .section-kicker {
-  color: var(--feature-muted);
+  color: var(--feature-accent);
 }
 
 .capability-list {
@@ -1778,7 +1780,7 @@ h3 {
 }
 
 .capability-number {
-  color: var(--feature-muted);
+  color: var(--feature-accent);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
 }
@@ -1800,7 +1802,15 @@ h3 {
 }
 
 .capability-row:hover .capability-number {
-  color: var(--muted-foreground);
+  color: var(--primary);
+}
+
+.capability-row > svg {
+  color: var(--feature-accent);
+}
+
+.capability-row:hover > svg {
+  color: var(--primary);
 }
 
 .belief-section {
@@ -1824,6 +1834,7 @@ h3 {
 }
 
 .belief-statement em {
+  color: var(--warm-accent);
   font-family: Georgia, serif;
   font-weight: 400;
 }
@@ -1871,7 +1882,7 @@ h3 {
 
 .principle-list article > span {
   padding-top: 4px;
-  color: var(--muted-foreground);
+  color: var(--primary);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
 }
@@ -1928,12 +1939,22 @@ h3 {
   padding: 30px;
   border: 1px solid var(--editorial-border);
   border-right: 0;
+  border-top: 3px solid var(--primary);
+}
+
+.process-home-grid li:nth-child(2) {
+  border-top-color: var(--violet-accent);
+}
+
+.process-home-grid li:nth-child(3) {
+  border-top-color: var(--warm-accent);
 }
 
 .process-home-grid li:last-child {
   border-right: 1px solid var(--editorial-border);
   background: var(--feature-surface);
   color: var(--feature-foreground);
+  border-top-color: var(--feature-accent);
 }
 
 .process-home-track {
@@ -2062,6 +2083,10 @@ h3 {
   background: var(--result-surface);
 }
 
+.impact-panel-result .impact-panel-index {
+  color: var(--primary);
+}
+
 .culture-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2079,7 +2104,7 @@ h3 {
 .culture-image img {
   object-fit: cover;
   object-position: center 42%;
-  filter: saturate(0.68) contrast(1.05);
+  filter: saturate(0.95) contrast(1.02);
 }
 
 .culture-copy {
@@ -2090,7 +2115,7 @@ h3 {
 }
 
 .culture-copy .section-kicker {
-  color: var(--feature-muted);
+  color: var(--feature-accent);
 }
 
 .culture-copy h2 {
@@ -2113,12 +2138,12 @@ h3 {
 .editorial-link-light {
   align-self: flex-start;
   margin-top: 50px;
-  color: var(--feature-foreground);
+  color: var(--feature-accent);
 }
 
 .closing-cta {
   padding-block: 126px;
-  background: var(--surface);
+  background: radial-gradient(ellipse at 85% 100%, var(--hero-wash), transparent 70%), var(--surface);
   color: var(--foreground);
 }
 
@@ -2186,7 +2211,7 @@ h3 {
 }
 
 .footer a:hover {
-  color: var(--feature-foreground);
+  color: var(--feature-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -2321,7 +2346,7 @@ h3 {
 
   .process-home-grid li:nth-child(3),
   .process-home-grid li:nth-child(4) {
-    border-top: 0;
+    border-top-width: 3px;
   }
 
   .culture-section {
@@ -2478,7 +2503,20 @@ h3 {
   .process-home-grid li:nth-child(4) {
     min-height: 250px;
     border: 1px solid var(--editorial-border);
+    border-top: 3px solid var(--primary);
     border-bottom: 0;
+  }
+
+  .process-home-grid li:nth-child(2) {
+    border-top-color: var(--violet-accent);
+  }
+
+  .process-home-grid li:nth-child(3) {
+    border-top-color: var(--warm-accent);
+  }
+
+  .process-home-grid li:last-child {
+    border-top-color: var(--feature-accent);
   }
 
   .process-home-grid li:last-child {
@@ -2534,6 +2572,6 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   .client-track {
-    animation: client-scroll 16s linear infinite !important;
+    animation: none !important;
   }
 }

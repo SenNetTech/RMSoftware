@@ -30,6 +30,7 @@ All page and section links use `app/site-link.tsx`, a native anchor wrapper. Vin
 - `app/contact/page.tsx` and `app/enquiry-form.tsx`: plain-language enquiry with name, company, work email, optional phone, the business situation, and optional project type and starting timeframe. The form does not request a budget.
 - `app/site-content.ts`: canonical production origin, verified email and optional verified international WhatsApp number. Blank WhatsApp is intentionally hidden.
 - `app/globals.css` and `app/site-styles.css`: shared brand tokens, responsive design, touch targets, focus states and reduced motion. Existing logo retained.
+  The dark palette uses midnight blue surfaces with sea-glass teal, coral and lavender accents. Light mode uses the same brand colors on pale surfaces. Feature sections stay dark in both themes; the client marquee stops when reduced motion is requested.
 - `app/theme-toggle.tsx`: keyboard-accessible light/dark switch in the shared desktop and mobile header. Appearance follows the device preference until changed, saves under `rmsoftware-theme` in local storage, and stays in sync across open tabs. The layout restores saved appearance before the page paints; toggling still works when storage is unavailable. Homepage sections, client logos, footer and enquiry controls use the shared theme palettes.
 - `app/privacy/page.tsx`: enquiry and cookie information. Update it when providers or actual processing practices change.
 
