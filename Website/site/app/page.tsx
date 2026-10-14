@@ -131,7 +131,9 @@ export default function Home() {
             <p className="section-kicker">
               Independent software agency · South Africa
             </p>
-            <h1 id="hero-title">Your ideal software partner.</h1>
+            <h1 id="hero-title">
+              Your ideal <span>software</span> partner.
+            </h1>
             <p className="home-hero-lead">
               We build practical software solutions that help businesses work
               smarter, operate more efficiently and grow.
