@@ -9,7 +9,9 @@ export function ConsultationCTA() {
     <section className="closing-cta" aria-labelledby="next-step">
       <div className="container cta-panel">
         <p className="section-kicker">Ready when you are</p>
-        <h2 id="next-step">Let&apos;s make your business work better.</h2>
+        <h2 id="next-step" data-reveal="rise">
+          Let&apos;s make your business work better.
+        </h2>
         <p>
           Tell us what&apos;s slowing your business down. We&apos;ll help you
           determine whether technology can solve it.

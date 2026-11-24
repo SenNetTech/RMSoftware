@@ -28,7 +28,7 @@ export default function ServicesPage() {
         aria-label="Our services"
       >
         {services.map((s, i) => (
-          <article key={s.slug}>
+          <article key={s.slug} data-reveal="rise">
             <span className="service-index">0{i + 1}</span>
             <div>
               <h2>{s.title}</h2>

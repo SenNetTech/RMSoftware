@@ -104,7 +104,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
       <section className="section container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal="rise">
           <div>
             <p className="eyebrow">PRACTICAL APPLICATIONS</p>
             <h2>What this could enable.</h2>

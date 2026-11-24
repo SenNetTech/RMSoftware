@@ -192,7 +192,7 @@ export default function Home() {
         aria-labelledby="capabilities-title"
       >
         <div className="container">
-          <div className="editorial-heading light-on-dark">
+          <div className="editorial-heading light-on-dark" data-reveal="rise">
             <p className="section-kicker">What we actually do</p>
             <div>
               <h2 id="capabilities-title">
@@ -208,7 +208,12 @@ export default function Home() {
 
           <div className="capability-list">
             {capabilities.map(({ number, title, copy, href, icon: Icon }) => (
-              <Link className="capability-row" href={href} key={title}>
+              <Link
+                className="capability-row"
+                href={href}
+                key={title}
+                data-reveal="rule"
+              >
                 <span className="capability-number">{number}</span>
                 <Icon aria-hidden="true" size={26} strokeWidth={1.5} />
                 <h3>{title}</h3>
@@ -223,7 +228,7 @@ export default function Home() {
       <section className="belief-section" aria-label="Our point of view">
         <div className="container belief-grid">
           <p className="section-kicker">Our point of view</p>
-          <p className="belief-statement">
+          <p className="belief-statement" data-reveal="rise">
             We build technology <em>when it makes business sense.</em>
           </p>
         </div>
@@ -274,10 +279,18 @@ export default function Home() {
           </div>
           <ol className="process-home-grid">
             {process.map(({ number, title, copy }, index) => (
-              <li key={title}>
+              <li key={title} data-reveal="diagram">
                 <div className="process-home-track">
                   <span>{number}</span>
                   {index < process.length - 1 && <ArrowRight size={19} />}
+                </div>
+                <div
+                  aria-hidden="true"
+                  className={`process-sketch sketch-${title.toLowerCase()}`}
+                >
+                  <span />
+                  <span />
+                  <span />
                 </div>
                 <h3>{title}</h3>
                 <p>{copy}</p>
@@ -289,7 +302,7 @@ export default function Home() {
 
       <section className="work-section" id="work" aria-labelledby="work-title">
         <div className="container">
-          <div className="work-heading">
+          <div className="work-heading" data-reveal="rise">
             <p className="section-kicker">Selected partnerships</p>
             <h2 id="work-title">The result is the point.</h2>
             <p>
@@ -330,7 +343,7 @@ export default function Home() {
         id="people"
         aria-labelledby="culture-title"
       >
-        <div className="culture-image">
+        <div className="culture-image" data-reveal="photo">
           <Image
             src="/images/rmsoftware-culture.webp"
             alt="Two software professionals working through a business process together"

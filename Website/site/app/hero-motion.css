@@ -1,0 +1,119 @@
+.home-hero-visual::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 32px;
+  inset-inline: 38px;
+  height: 18px;
+  color: #ffffffbf;
+  background:
+    linear-gradient(currentColor, currentColor) left top / 18px 1px,
+    linear-gradient(currentColor, currentColor) left top / 1px 100%,
+    linear-gradient(currentColor, currentColor) right top / 18px 1px,
+    linear-gradient(currentColor, currentColor) right top / 1px 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+@media (max-width: 680px) {
+  .home-hero-visual::before {
+    top: 20px;
+    inset-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero {
+    --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-hero-copy > *,
+  .home-hero-visual figcaption span {
+    animation: hero-type-in 620ms var(--hero-ease) backwards;
+  }
+
+  .home-hero-copy h1 {
+    animation-delay: 50ms;
+  }
+
+  .home-hero-lead {
+    animation-delay: 110ms;
+  }
+
+  .home-hero-detail {
+    animation-delay: 150ms;
+  }
+
+  .home-hero-actions {
+    animation-delay: 200ms;
+  }
+
+  .home-hero-actions:focus-within {
+    animation: none;
+  }
+
+  .home-hero-visual img {
+    /* Independent scale composes with the existing pointer-hover transform. */
+    animation: hero-photo-settle 1250ms var(--hero-ease) backwards;
+  }
+
+  .home-hero-visual::before {
+    animation: hero-frame-open 1050ms var(--hero-ease) backwards;
+  }
+
+  .home-hero-visual figcaption {
+    border-top-color: transparent;
+  }
+
+  .home-hero-visual figcaption::before {
+    content: '';
+    position: absolute;
+    inset: -1px 0 auto;
+    height: 1px;
+    background: #ffffff80;
+    transform-origin: left;
+    animation: hero-caption-rule 800ms var(--hero-ease) 160ms backwards;
+  }
+
+  .home-hero-visual figcaption span {
+    animation-delay: 260ms;
+  }
+}
+
+@keyframes hero-type-in {
+  from {
+    opacity: 0.6;
+    transform: translateY(0.45em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-photo-settle {
+  from { scale: 1.065; }
+  to { scale: 1; }
+}
+
+@keyframes hero-frame-open {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scaleX(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-caption-rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .home-hero-visual:hover img {
+    transform: none;
+  }
+}
