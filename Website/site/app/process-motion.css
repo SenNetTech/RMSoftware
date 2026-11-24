@@ -1,0 +1,196 @@
+.process-sketch {
+  position: relative;
+  isolation: isolate;
+  height: 58px;
+  margin-block: 18px;
+  color: var(--primary);
+}
+
+.process-sketch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 1px 1px, currentColor 0.8px, transparent 1px) 0 50% / 10px 10px;
+  opacity: 0.22;
+  mask-image: linear-gradient(90deg, #000 62px, transparent 175px);
+}
+
+.process-home-grid .process-sketch + h3 {
+  margin-top: 0;
+}
+
+.process-sketch > span {
+  position: absolute;
+  border: 1.5px solid currentColor;
+}
+
+/* A lens resolves on the point at its centre. */
+.sketch-understand > span {
+  top: 50%;
+  left: 30px;
+  width: 36px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  --assembly-x: -12px;
+}
+
+.sketch-understand > span:nth-child(2) {
+  width: 24px;
+  opacity: 0.55;
+  --assembly-x: 8px;
+}
+
+.sketch-understand > span:last-child {
+  width: 6px;
+  background: currentColor;
+  --assembly-x: 0px;
+}
+
+.sketch-understand::after {
+  content: '';
+  position: absolute;
+  left: 43px;
+  top: calc(50% + 12px);
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(42deg);
+  transform-origin: left;
+}
+
+/* Three plan nodes share a single branching route. */
+.sketch-plan {
+  color: var(--violet-accent);
+}
+
+.sketch-plan::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 16px;
+  top: calc(50% - 12px);
+  width: 55px;
+  height: 25px;
+  background:
+    linear-gradient(currentColor 0 0) left center / 50% 1px,
+    linear-gradient(currentColor 0 0) center / 1px 100%,
+    linear-gradient(currentColor 0 0) right top / 50% 1px,
+    linear-gradient(currentColor 0 0) right bottom / 50% 1px;
+  background-repeat: no-repeat;
+}
+
+.sketch-plan > span {
+  top: calc(50% - 4px);
+  left: 8px;
+  width: 9px;
+  height: 9px;
+  background: currentColor;
+  --assembly-x: -6px;
+}
+
+.sketch-plan > span:nth-child(n + 2) {
+  left: 70px;
+  top: calc(50% - 16px);
+  width: 13px;
+  background: var(--background);
+}
+
+.sketch-plan > span:last-child {
+  top: calc(50% + 8px);
+}
+
+/* Three sheets assemble from the base up. */
+.sketch-build {
+  color: var(--warm-accent);
+}
+
+.sketch-build > span {
+  left: 20px;
+  top: calc(50% + 1px);
+  width: 38px;
+  height: 24px;
+  background: var(--background);
+  transform: matrix(1, -0.28, 0.86, 0.44, 0, 0);
+  --assembly-y: -12px;
+}
+
+.sketch-build > span:nth-child(2) {
+  top: calc(50% - 7px);
+}
+
+.sketch-build > span:last-child {
+  top: calc(50% - 15px);
+  background: color-mix(in srgb, currentColor 12%, var(--background));
+}
+
+/* Growth bars rise from a common baseline. */
+.sketch-improve {
+  color: var(--feature-accent);
+}
+
+.sketch-improve::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: calc(50% + 18px);
+  width: 72px;
+  border-bottom: 1px solid currentColor;
+}
+
+.sketch-improve > span {
+  bottom: calc(50% - 18px);
+  left: 13px;
+  width: 13px;
+  height: 12px;
+  transform-origin: center bottom;
+}
+
+.sketch-improve > span:nth-child(2) {
+  left: 35px;
+  height: 24px;
+}
+
+.sketch-improve > span:last-child {
+  left: 57px;
+  height: 36px;
+  background: currentColor;
+}
+
+@media (max-width: 680px) {
+  .process-sketch {
+    height: 46px;
+    margin-block: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-entered] > .process-sketch > span {
+    animation: process-assemble 540ms cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
+  }
+
+  [data-entered] > .sketch-plan::after {
+    animation: process-connect 600ms ease-out backwards;
+  }
+
+  [data-entered] > .sketch-improve > span {
+    animation-name: process-grow;
+  }
+
+  [data-entered] > .process-sketch > span:nth-child(2) { animation-delay: 100ms; }
+  [data-entered] > .process-sketch > span:nth-child(3) { animation-delay: 200ms; }
+
+  @keyframes process-assemble {
+    from { opacity: 0; translate: var(--assembly-x, 0px) var(--assembly-y, 0px); }
+  }
+
+  @keyframes process-connect {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0); }
+  }
+
+  @keyframes process-grow {
+    from { scale: 1 0.04; }
+  }
+}

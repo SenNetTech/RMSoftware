@@ -4,6 +4,7 @@ import { site } from './site-content';
 import './globals.css';
 import Header from './header';
 import { Footer } from './site-shell';
+import ScrollReveals from './scroll-reveals';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -62,6 +63,7 @@ export default function RootLayout({
         <main id="main" tabIndex={-1}>
           {children}
         </main>
+        <ScrollReveals />
         <Footer />
       </body>
     </html>
