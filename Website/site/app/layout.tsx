@@ -5,6 +5,7 @@ import './globals.css';
 import Header from './header';
 import { Footer } from './site-shell';
 import ScrollReveals from './scroll-reveals';
+import PointerSpotlight from './pointer-spotlight';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -64,6 +65,7 @@ export default function RootLayout({
           {children}
         </main>
         <ScrollReveals />
+        <PointerSpotlight />
         <Footer />
       </body>
     </html>

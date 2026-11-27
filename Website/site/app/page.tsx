@@ -13,6 +13,14 @@ import type { Metadata } from 'next';
 import { site } from './site-content';
 import StructuredData from './structured-data';
 import { ConsultationCTA } from './site-shell';
+import HeroAutomationFeed from './hero-automation-feed';
+import AutomationPipeline from './automation-pipeline';
+import DeviceFrame from './device-frame';
+import { demos } from './demos-data';
+
+const showcase = ['retail-storefront', 'clinic-booking-app', 'logistics-dashboard'].map(
+  (slug) => demos.find((demo) => demo.slug === slug)!,
+);
 
 export const metadata: Metadata = {
   alternates: { canonical: site.url },
@@ -165,6 +173,7 @@ export default function Home() {
               <span>People first</span>
               <span>Business always</span>
             </figcaption>
+            <HeroAutomationFeed />
           </figure>
         </div>
         <div className="hero-side-note" aria-hidden="true">
@@ -190,6 +199,7 @@ export default function Home() {
         className="capabilities-section"
         id="what-we-do"
         aria-labelledby="capabilities-title"
+        data-spotlight
       >
         <div className="container">
           <div className="editorial-heading light-on-dark" data-reveal="rise">
@@ -231,6 +241,74 @@ export default function Home() {
           <p className="belief-statement" data-reveal="rise">
             We build technology <em>when it makes business sense.</em>
           </p>
+        </div>
+      </section>
+
+      <section
+        className="automation-section"
+        id="automation"
+        aria-labelledby="automation-title"
+      >
+        <div className="container">
+          <div className="automation-heading" data-reveal="rise">
+            <p className="section-kicker">Automation in action</p>
+            <h2 id="automation-title">
+              Watch the busywork <em>disappear.</em>
+            </h2>
+            <p>
+              Press play and follow a request through connected systems: no
+              re-typing, no chasing and no lost emails. A person still approves
+              the steps that matter.
+            </p>
+          </div>
+          <AutomationPipeline />
+        </div>
+      </section>
+
+      <section
+        className="showcase-section"
+        id="demos"
+        aria-labelledby="showcase-title"
+      >
+        <div className="container">
+          <div className="showcase-heading" data-reveal="rise">
+            <p className="section-kicker">Concept showcase</p>
+            <h2 id="showcase-title">See what it could look like.</h2>
+            <p>
+              Concept designs for fictional businesses that show the kind of
+              portals, dashboards and apps we build. They are labelled clearly
+              and are never presented as client work.
+            </p>
+          </div>
+          <ul className="showcase-bento">
+            {showcase.map((demo, index) => (
+              <li className="showcase-item" key={demo.slug}>
+                <figure>
+                  <DeviceFrame
+                    demo={demo}
+                    sizes={
+                      index === 0
+                        ? '(max-width: 900px) 100vw, 50vw'
+                        : '(max-width: 680px) 100vw, 30vw'
+                    }
+                  />
+                  <figcaption>
+                    <span>{demo.industry}</span>
+                    <strong>{demo.title}</strong>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          <div className="showcase-more">
+            <p>
+              Explore six concepts, each with the automations behind it, and
+              estimate how much time automation could return to your team.
+            </p>
+            <Link className="button button-primary" href="/demos/">
+              Explore all concept demos <ArrowUpRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -342,6 +420,7 @@ export default function Home() {
         className="culture-section"
         id="people"
         aria-labelledby="culture-title"
+        data-spotlight
       >
         <div className="culture-image" data-reveal="photo">
           <Image
