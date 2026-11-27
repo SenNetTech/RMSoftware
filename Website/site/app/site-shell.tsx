@@ -61,6 +61,8 @@ export function Footer() {
         <nav aria-label="Company">
           <h3>RMSoftware</h3>
           <Link href="/#why-us">Why RMSoftware</Link>
+          <Link href="/#automation">Automation in action</Link>
+          <Link href="/demos/">Concept demos</Link>
           <Link href="/#process">How we work</Link>
           <Link href="/#work">Selected partnerships</Link>
           <Link href="/#people">Our people</Link>

@@ -8,6 +8,7 @@ import ThemeToggle from './theme-toggle';
 
 const links = [
   ['What we do', '/#what-we-do'],
+  ['Demos', '/demos/'],
   ['Why us', '/#why-us'],
   ['How we work', '/#process'],
   ['Our people', '/#people'],
@@ -15,6 +16,32 @@ const links = [
 
 export default function Header() {
   const disclosure = useRef<HTMLDetailsElement>(null);
+  const header = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const element = header.current;
+    if (!element) return;
+    let frame = 0;
+    function update() {
+      frame = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      element?.toggleAttribute('data-scrolled', window.scrollY > 24);
+      element?.style.setProperty(
+        '--scroll-progress',
+        max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : '0',
+      );
+    }
+    function onScroll() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
   useEffect(() => {
     const element = disclosure.current;
     function onKeyDown(event: KeyboardEvent) {
@@ -27,7 +54,8 @@ export default function Header() {
     return () => element?.removeEventListener('keydown', onKeyDown);
   }, []);
   return (
-    <header className="site-header">
+    <header className="site-header" ref={header}>
+      <span className="scroll-progress" aria-hidden="true" />
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label="RM Software home">
           <span className="logo-crop">

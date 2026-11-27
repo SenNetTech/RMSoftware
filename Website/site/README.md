@@ -15,7 +15,7 @@ npm run build
 npm run check:seo
 ```
 
-The production build exports nine content routes and a 404 page to `dist/client`. The prebuild step regenerates the sitemap. SEO checks inspect the deployable HTML for unique metadata, canonical links, structured data, working internal links/anchors, enquiry labels and encoding. Enquiry checks validate input and complete email drafts; they never send messages.
+The production build exports ten content routes and a 404 page to `dist/client`. The prebuild step regenerates the sitemap. SEO checks inspect the deployable HTML for unique metadata, canonical links, structured data, working internal links/anchors, enquiry labels and encoding. Enquiry checks validate input and complete email drafts; they never send messages.
 
 Browser appearance checks cover light and dark modes on all nine content routes, mobile widths down to 320px, desktop header breakpoints, keyboard toggling, reload/navigation persistence and syncing between tabs. Theme behavior checks also cover device preferences, invalid saved values and unavailable storage. Field Core Web Vitals measurements have not been performed. Static rendering, local fonts, restrained client code, disabled link prefetch and reserved image dimensions support performance; they do not establish a measured score.
 
@@ -33,6 +33,10 @@ All page and section links use `app/site-link.tsx`, a native anchor wrapper. Vin
   The dark palette uses midnight blue surfaces with sea-glass teal, coral and lavender accents. Light mode uses the same brand colors on pale surfaces. Feature sections stay dark in both themes; the client marquee stops when reduced motion is requested.
 - `app/theme-toggle.tsx`: keyboard-accessible light/dark switch in the shared desktop and mobile header. Appearance follows the device preference until changed, saves under `rmsoftware-theme` in local storage, and stays in sync across open tabs. The layout restores saved appearance before the page paints; toggling still works when storage is unavailable. Homepage sections, client logos, footer and enquiry controls use the shared theme palettes.
 - `app/privacy/page.tsx`: enquiry and cookie information. Update it when providers or actual processing practices change.
+- `app/demos/page.tsx`, `app/demos-data.ts` and `public/images/demos/`: six concept designs for fictional businesses, shown in browser/phone frames with a visible "Concept" badge, plus the automation lab and savings calculator. These are concepts, never client work: keep the labels and do not attach real client names or results to them. Regenerate optimised images with `node scripts/optimise-demo-images.mjs <folder>` (source files named `<slug>.jpg|png`), then update the recorded dimensions in `demos-data.ts`.
+- `app/automation-scenarios.ts` and `app/automation-pipeline.tsx`: illustrative, front-end-only automation runs (enquiry to invoice, document intake, stock reorder) with tabs, play/pause/step/replay and a run log. The homepage run autoplays once when scrolled into view and pauses off-screen or in hidden tabs. With reduced motion, the finished run is shown and visitors can step through it.
+- `app/roi-calculator.tsx`: estimates hours and rand value from visitor inputs only; nothing is stored or sent.
+- Motion and depth: `app/effects.css` (glass tokens, scroll-aware header with a progress rule, hero grid and gradient accent, pointer spotlight via `app/pointer-spotlight.tsx`) and `app/showcase.css` (hero automation feed, pipeline, device frames, gallery, lightbox, calculator). All animation respects `prefers-reduced-motion`.
 
 ## Enquiries and privacy
 

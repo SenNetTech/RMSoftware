@@ -6,6 +6,7 @@ const routes = [
   '/services/',
   ...services.map((s) => `/services/${s.slug}/`),
   '/contact/',
+  '/demos/',
   '/privacy/',
 ];
 writeFileSync(

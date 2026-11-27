@@ -5,6 +5,9 @@ import { services } from '../../services-data';
 import { site } from '../../site-content';
 import { pageMetadata } from '../../page-metadata';
 import { ConsultationCTA } from '../../site-shell';
+import { demosForService } from '../../demos-data';
+import DeviceFrame from '../../device-frame';
+import AutomationPipeline from '../../automation-pipeline';
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
   return services.map(({ slug }) => ({ slug }));
@@ -22,6 +25,7 @@ export default async function ServicePage({ params }: Props) {
   const service = services.find((s) => s.slug === slug);
   if (!service) notFound();
   const url = new URL(`/services/${slug}/`, site.url).href;
+  const related = demosForService(slug);
   const data = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -103,6 +107,61 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </div>
       </section>
+      {slug === 'business-process-automation' && (
+        <section
+          className="automation-section lab-section"
+          aria-labelledby="service-automation-title"
+        >
+          <div className="container">
+            <div className="automation-heading" data-reveal="rise">
+              <p className="section-kicker">Automation in action</p>
+              <h2 id="service-automation-title">
+                See a workflow <em>run itself.</em>
+              </h2>
+              <p>
+                An illustrative example of an enquiry moving through connected
+                systems, with a person approving the invoice.
+              </p>
+            </div>
+            <AutomationPipeline ids={['enquiry', 'documents']} />
+          </div>
+        </section>
+      )}
+      {related.length > 0 && (
+        <section
+          className="service-demo-band"
+          aria-labelledby="service-demo-title"
+        >
+          <div className="container">
+            <div className="section-heading" data-reveal="rise">
+              <div>
+                <p className="eyebrow">CONCEPT EXAMPLE</p>
+                <h2 id="service-demo-title">What this could look like.</h2>
+              </div>
+              <p>
+                Concept designs for fictional businesses, not client work.{' '}
+                <Link className="text-link" href="/demos/">
+                  See all concept demos <ArrowUpRight size={16} />
+                </Link>
+              </p>
+            </div>
+            <div className="service-demo-grid">
+              {related.map((demo) => (
+                <figure key={demo.slug}>
+                  <DeviceFrame
+                    demo={demo}
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                  />
+                  <figcaption>
+                    <strong>{demo.title}</strong>
+                    {demo.summary}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       <section className="section container">
         <div className="section-heading" data-reveal="rise">
           <div>

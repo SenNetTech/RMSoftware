@@ -4,6 +4,8 @@
 @import './site-styles.css';
 @import './hero-motion.css';
 @import './process-motion.css';
+@import './effects.css';
+@import './showcase.css';
 
 @custom-variant dark {
   &:where([data-theme='dark'], [data-theme='dark'] *) {

@@ -1,0 +1,230 @@
+/* Depth, glass and motion layer. Brand palette stays in globals.css. */
+:root {
+  --glass: #ffffffbf;
+  --glass-strong: #ffffffe6;
+  --glass-border: #172c3a1a;
+  --glow: 0 1px 0 #ffffff inset, 0 30px 70px -32px #156b6573;
+  --lift-shadow: 0 28px 60px -30px #172c3a59;
+  --gradient-brand: linear-gradient(110deg, var(--primary) 0%, var(--violet-accent) 50%, var(--warm-accent) 100%);
+  --grid-line: #172c3a0f;
+  --feature-glass: #ffffff0d;
+  --feature-glass-border: #ffffff1f;
+  --feature-deep: #142434;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --glass: #1c2d41bf;
+    --glass-strong: #1c2d41ee;
+    --glass-border: #75ddce24;
+    --glow: 0 1px 0 #ffffff0d inset, 0 30px 70px -32px #000000a6;
+    --lift-shadow: 0 28px 60px -30px #000000b3;
+    --grid-line: #f1f5f70b;
+  }
+}
+
+:root[data-theme='dark'] {
+  --glass: #1c2d41bf;
+  --glass-strong: #1c2d41ee;
+  --glass-border: #75ddce24;
+  --glow: 0 1px 0 #ffffff0d inset, 0 30px 70px -32px #000000a6;
+  --lift-shadow: 0 28px 60px -30px #000000b3;
+  --grid-line: #f1f5f70b;
+}
+
+/* Header: compact on scroll with a reading-progress rule. */
+.site-header {
+  transition:
+    box-shadow 240ms ease,
+    background 240ms ease;
+}
+
+.site-header .header-inner {
+  transition: min-height 240ms ease;
+}
+
+.site-header[data-scrolled] {
+  box-shadow: 0 12px 40px -24px #0a152466;
+}
+
+.site-header[data-scrolled] .header-inner {
+  min-height: 68px;
+}
+
+.scroll-progress {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--gradient-brand);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+@media (max-width: 1100px) {
+  .desktop-nav {
+    gap: 20px;
+  }
+}
+
+/* Hero: technical grid, soft colour field and gradient headline accent. */
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 70% at 18% 45%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+
+.home-hero::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: -20%;
+  left: -12%;
+  width: 52vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 62%),
+    radial-gradient(circle at 70% 70%, color-mix(in srgb, var(--violet-accent) 16%, transparent), transparent 60%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.home-hero-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero h1 span {
+  background: var(--gradient-brand);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Buttons: sheen sweep and depth. */
+.button-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--primary) 90%, transparent);
+}
+
+.button-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, #ffffff40 50%, transparent 70%);
+  transform: translateX(-110%);
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.button-primary:hover::after {
+  transform: translateX(110%);
+}
+
+/* Pointer spotlight for dark feature sections. */
+[data-spotlight] {
+  position: relative;
+  isolation: isolate;
+}
+
+[data-spotlight]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    520px circle at var(--mx, 50%) var(--my, -40%),
+    #75ddce1f,
+    transparent 60%
+  );
+  opacity: var(--spot, 0);
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.capabilities-section[data-spotlight] > .container,
+.culture-section[data-spotlight] > * {
+  position: relative;
+}
+
+/* Capability rows: icon tiles and glass hover. */
+.capability-row > svg:not(.capability-arrow) {
+  box-sizing: content-box;
+  padding: 9px;
+  border: 1px solid var(--feature-glass-border);
+  background: var(--feature-glass);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.capability-row:hover > svg:not(.capability-arrow) {
+  border-color: transparent;
+  background: var(--accent-soft);
+}
+
+/* Process cards lift on hover. */
+.process-home-grid li {
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 260ms ease;
+}
+
+@media (hover: hover) {
+  .process-home-grid li:hover {
+    position: relative;
+    z-index: 1;
+    transform: translateY(-6px);
+    box-shadow: var(--lift-shadow);
+  }
+}
+
+/* Closing call to action: gradient rule. */
+.closing-cta .cta-panel {
+  position: relative;
+  padding-top: 56px;
+}
+
+.closing-cta .cta-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: var(--gradient-brand);
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero h1 span {
+    animation: gradient-drift 9s ease-in-out infinite alternate;
+  }
+
+  .home-hero::after {
+    animation: hero-orb 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes gradient-drift {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+  }
+
+  @keyframes hero-orb {
+    from { translate: 0 0; scale: 1; }
+    to { translate: 6vw 4vh; scale: 1.12; }
+  }
+}
+
+@media (max-width: 680px) {
+  .home-hero::after {
+    width: 110vw;
+  }
+}

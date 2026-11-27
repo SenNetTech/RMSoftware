@@ -8,6 +8,7 @@ const routes = [
   '/services/',
   ...services.map((s) => `/services/${s.slug}/`),
   '/contact/',
+  '/demos/',
   '/privacy/',
 ];
 const decode = (value) =>
@@ -154,6 +155,25 @@ for (const [path, html] of htmlByRoute) {
       3,
     );
   }
+}
+const demosHtml = htmlByRoute.get('/demos/');
+assert.ok(
+  demosHtml.includes('concept for a fictional business'),
+  'Demos page labels concepts as fictional',
+);
+const demoImages = [
+  ...demosHtml.matchAll(/<img\b[^>]*\/images\/demos\/[^>]*>/gi),
+].map(([tag]) => attributes(tag));
+assert.ok(demoImages.length >= 6, 'Demos page shows every concept image');
+for (const image of [
+  ...demoImages,
+  ...[...htmlByRoute.get('/').matchAll(/<img\b[^>]*\/images\/demos\/[^>]*>/gi)].map(
+    ([tag]) => attributes(tag),
+  ),
+]) {
+  assert.ok(image.alt, `${image.src}: demo image has alt text`);
+  assert.ok(image.width && image.height, `${image.src}: demo image has dimensions`);
+  assert.ok(existsSync(new URL(`.${image.src}`, output)), `${image.src}: exists`);
 }
 const contactHtml = htmlByRoute.get('/contact/');
 for (const field of [
